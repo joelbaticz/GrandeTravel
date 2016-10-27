@@ -1,0 +1,77 @@
+﻿@font-face {
+    font-family: 'airways';
+    src: url('../fonts/airways.ttf') format('truetype');
+}
+
+body {
+    background-image: url('../images/unnamed--564c8aa252.jpg');
+}
+
+.startpagelogo a {
+    float: left;
+    color: white;
+    /*font: bold 40px airways;*/
+    font-family: airways, 'Segoe Script';
+    font-size: 40px;
+    /*font-weight: bold;*/
+}
+
+.startpagelogo a:hover {
+    text-decoration: none;
+}
+
+.startpagelinks {
+    float: right;
+    color: white;
+}
+
+.startpagelinks a {
+    color: white;
+}
+
+.startpageclear {
+    clear: both;
+}
+
+h1 {
+    margin-top: 100px;
+    text-align: center;
+    color: white;
+    font-size: 36px;
+}
+
+label {
+    color: white;
+}
+
+.form-control {
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0);
+    color: white;
+}
+
+[placeholder] {
+    color: white;
+}
+
+.input-group-addon {
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0);
+        /*cornflowerblue;*/
+    color: white;
+}
+
+.center-align {
+    margin: 0px auto 0px auto;
+    width: 40%;
+}
+
+.btn-link {
+    color: white;
+}
+
+.btn-link:hover {
+    color: white;
+
+}
+

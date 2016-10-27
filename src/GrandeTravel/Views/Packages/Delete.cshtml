@@ -1,0 +1,11 @@
+﻿@model DeletePackageViewModel
+<h2>Delete Package</h2>
+
+<p>Are you sure you want to delete the @Model.Name package?</p>
+
+
+@*<input type="button" asp-controller="Package" asp-action="Delete" asp-route-id="@Model.PackageId" value="Delete Package"/>
+<input type="button" asp-controller="Package" asp-action="Edit" asp-route-id="@Model.PackageId" value="Cancel"/>*@
+
+<button class="btn btn-primary" onclick="location.href='@Url.Action("DeleteCommit", "Packages", new { id = Model.PackageId })';return false;">Delete</button>
+<button class="btn" onclick="location.href='@Url.Action("Index", "Packages")';return false;">Cancel</button>

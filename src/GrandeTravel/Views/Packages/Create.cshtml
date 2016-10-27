@@ -1,0 +1,60 @@
+﻿@model CreatePackageViewModel
+
+<h2>Create Package</h2>
+
+<form class="form-horizontal" asp-controller="Packages" asp-action="Create" method="post" role="form">
+    
+    @*<div>
+        <label asp-for="ProviderId">Provider Id: @Model.ProviderId</label>
+        <input type="hidden" asp-for="ProviderId" value="@Model.ProviderId"/>
+    </div>*@
+
+    <div class="form-group">
+        <label asp-for="ProviderId" class="control-label col-sm-2">Provider Id:</label>
+        <div class="col-sm-10">
+            <input asp-for="ProviderId" class="form-control" />
+            <span asp-validation-for="ProviderId"></span>
+        </div>
+    </div>
+
+   
+    <div class="form-group">
+        <label asp-for="Name" class="control-label col-sm-2">Name:</label>
+        <div class="col-sm-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="ThumbnailUrl" class="control-label col-sm-2">Thumbnail URL:</label>
+        <div class="col-sm-10">
+            <input asp-for="ThumbnailUrl" class="form-control" />
+            <span asp-validation-for="ThumbnailUrl"></span>
+        </div>
+    </div>    
+    <div class="form-group">
+        <label asp-for="Location" class="control-label col-sm-2">Location:</label>
+        <div class="col-sm-10">
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location"></span>
+        </div>
+    </div>    
+    <div class="form-group">
+        <label asp-for="Description" class="control-label col-sm-2">Description:</label>
+        <div class="col-sm-10">
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Price" class="control-label col-sm-2">Price:</label>
+        <div class="col-sm-10">
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price"></span>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary col-sm-offset-2">Add Package</button>
+
+
+</form>

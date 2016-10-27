@@ -1,0 +1,136 @@
+﻿@model DisplayAllPackagesViewModel
+
+
+@if (User.IsInRole("Provider"))
+{
+    <h2>Provider's Packages (@User.Identity.Name)</h2>
+}
+else
+{
+
+    <h2>Packages</h2>
+
+    <form class="form-inline" asp-controller="Packages" asp-action="Index" method="post" role="form">
+    
+        <div class="form-group">
+            <input asp-for="Location" class="form-control" placeholder="type location here"/>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="MinPrice" class="form-control" placeholder="min price"/>
+        </div>
+
+        <div class="form-group">
+            <input asp-for="MaxPrice" class="form-control" placeholder="max price"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
+
+    </form>
+
+}
+
+@if (Model.Packages == null || Model.Packages.Count() == 0)
+{
+    <br />
+    <p>Unfortunately we could not find suitable packages!</p>
+    <br />
+
+}
+else
+{
+
+<div class="search-result">
+
+        @foreach (var item in Model.Packages)
+        {
+            <div class="package">
+                <div class="package-inner">
+
+                    <div class="package-thumbnail">
+                        @*<img width="280" height="200" src="~/images/nothumbnail.jpg" />*@
+                        @{
+                            if (item.ThumbnailUrl == null || item.ThumbnailUrl == "")
+                            {
+                                <img width="280" height="200" src="~/images/nothumbnail.jpg" />
+                            }
+                            else
+                            {
+                                <img width="280" height="200" src="@item.ThumbnailUrl" />
+                            }
+                        }
+
+                        
+                        @*item.ThumbnailUrl*@
+                    </div>
+                    <div class="package-name">
+                        @{
+                            string shortName = item.Name;
+
+                            if (shortName.Length > 30)
+                            {
+                                shortName = shortName.Remove(30) + "...";
+                            }
+                        }
+                        @shortName
+
+                    </div>
+                    <div class="package-price">
+                        $@item.Price
+                    </div>
+                    <div class="package-description">
+                        @{         
+                            string shortDescription = item.Description;
+
+                            if (shortDescription.Length > 30)
+                            {
+                                shortDescription = shortDescription.Remove(30) + "...";
+                            }
+                        }
+                        @shortDescription
+                        
+                    </div>
+
+                    @if (User.IsInRole("Provider"))
+                    {
+                        <div class="package-edit">
+                            <a asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="package-buy">
+                            <a asp-controller="Packages" asp-action="Book" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>
+                        </div>
+                    }
+
+
+                    @*
+            <td>@item.ProviderId</td>
+            <td>@item.Name</td>
+            <td>@item.ThumbnailUrl</td>
+            <td>@item.Location</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+
+            <td><a asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">Edit</a></td>
+                    *@
+
+                </div>
+            </div>
+
+            
+            
+        }
+
+</div>
+}
+
+<div class="clearfix"></div>
+
+@if (User.IsInRole("Provider"))
+{
+    <div class="package-separator"></div>
+    <a class="btn btn-primary" asp-controller="Packages" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> Create Package</a>
+}
+
