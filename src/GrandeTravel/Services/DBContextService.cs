@@ -26,6 +26,7 @@ namespace GrandeTravel.Services
         public DbSet<Provider> tblProvider { get; set; }
         public DbSet<Package> tblPackage { get; set; }
         public DbSet<Customer> tblCustomer { get; set; }
+        public DbSet<Feedback> tblFeedback { get; set; }
 
     }
 }

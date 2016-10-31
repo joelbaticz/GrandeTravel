@@ -3,9 +3,15 @@
     src: url('../fonts/airways.ttf') format('truetype');
 }
 
-body {
-    background-image: url('../images/unnamed--564c8aa252.jpg');
+
+body { 
+  background: url(../images/Background7.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 
 .startpagelogo a {
     float: left;
@@ -42,24 +48,64 @@ h1 {
 
 label {
     color: white;
+    
+    
 }
 
+/*
 .form-control {
     border-radius: 15px;
     background-color: rgba(0,0,0,0);
+    border: 1px solid white;
+    color: white;
+}
+    */
+
+.form-control {
+    height: 30px;
+    font-size: 14px;
+    box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);
+    border: 1px solid white;
+
+    border-radius: 15px;
+    background-color: rgba(42,128,137,0.5);
+    border: 1px solid white;
     color: white;
 }
 
-[placeholder] {
-    color: white;
+
+
+.form-control:focus {
+    box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
+    border: 1px solid #bfa45b;
 }
 
 .input-group-addon {
     border-radius: 15px;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(42,128,137,0.5);
+    border: 1px solid white;
         /*cornflowerblue;*/
     color: white;
+    
+    
 }
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+  opacity: 1;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: white;
+  opacity: 1;
+}
+
+
 
 .center-align {
     margin: 0px auto 0px auto;
@@ -75,3 +121,9 @@ label {
 
 }
 
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 310px;
+    margin: auto;
+}

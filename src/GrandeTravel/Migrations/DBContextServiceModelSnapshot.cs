@@ -81,6 +81,28 @@ namespace GrandeTravel.Migrations
                     b.ToTable("tblCustomer");
                 });
 
+            modelBuilder.Entity("GrandeTravel.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("FullName");
+
+                    b.Property<int>("PackageId");
+
+                    b.Property<int>("Rating");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("PackageId");
+
+                    b.ToTable("tblFeedback");
+                });
+
             modelBuilder.Entity("GrandeTravel.Models.Package", b =>
                 {
                     b.Property<int>("PackageId")
@@ -226,6 +248,14 @@ namespace GrandeTravel.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("GrandeTravel.Models.Feedback", b =>
+                {
+                    b.HasOne("GrandeTravel.Models.Package", "Package")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("GrandeTravel.Models.Package", b =>

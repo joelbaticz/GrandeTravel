@@ -14,5 +14,8 @@ namespace GrandeTravel.ViewModels
         public string MaxPrice { get; set; }
 
         public IEnumerable<Package> Packages { get; set; }
+
+        public IEnumerable<double> Ratings { get; set; }
+        public IEnumerable<int> NumberOfReviews { get; set; }
     }
 }

@@ -24,8 +24,12 @@
             <link href="~/css/StartPageStyleSheet.css" rel="stylesheet" />
         }
     }
+
+
 </head>
         <body>
+
+
             <div class="container">
                 
                 @{
@@ -52,7 +56,8 @@
 
                                             @*<label>Welcome, @ViewData["DisplayName"]</label>*@
                                             <label>Welcome, @User.Identity.Name</label> 
-                                            <button style="margin-top: -7px; padding: 4px; background: radial-gradient(circle at center, rgba(48,191,253,1) 0%,rgba(21,91,225,1) 100%); border: 1px solid rgba(32,124,202,1)" class="btn btn-primary" onclick="location.href='@Url.Action("Logout", "Account")';return false;">Logout</button>
+                                            @*background: radial-gradient(circle at center, rgba(48,191,253,1) 0%,rgba(21,91,225,1) 100%);*@
+                                            <button style="margin-top: -7px; padding: 4px; border: 1px solid rgba(32,124,202,1)" class="btn btn-secondary" onclick="location.href='@Url.Action("Logout", "Account")';return false;">Logout</button>
                                         </div>
                                     </div>
                                 }
@@ -81,7 +86,7 @@
                                     {
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-wrench"></span></p><span class="caret"></span><p> Account</p></a>
+                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-cog"></span></p><span class="caret"></span><p> Account</p></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a asp-controller="Account" asp-action="EditAccount">Account Settings</a></li>
                                                     <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
@@ -172,13 +177,15 @@
 
             </div>
             
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
                
             
             
             
-             
+            @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+            @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> *@
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       </body>
+
 </html>

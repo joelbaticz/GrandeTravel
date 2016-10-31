@@ -1,0 +1,63 @@
+﻿@model LeaveFeedbackViewModel
+
+<h2>Leave feedback </h2>
+
+<form class="form-horizontal" asp-controller="Packages" asp-action="Feedback" method="post" role="form">
+
+    <div asp-validation-summary="ModelOnly"></div>
+    @*
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="PackageId"></label>
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.PackageId</p>
+            <input type="hidden" asp-for="PackageId" />
+            <span asp-validation-for="PackageId"></span>
+        </div>
+    </div>
+        *@
+
+    <input type="hidden" asp-for="PackageId" />
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="CompanyName">Company Name</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.CompanyName</p>
+            <input type="hidden" asp-for="CompanyName" />
+            <span asp-validation-for="CompanyName"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="PackageName">Package</label>
+        <div class="col-sm-10">
+            <p class="form-control-static">@Model.PackageName</p>
+            <input type="hidden" asp-for="PackageName" />
+            <span asp-validation-for="PackageName"></span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="Rating" >Rating (0-5)</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Rating" />
+            <span asp-validation-for="Rating"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="Content">Feedback</label>
+        <div class="col-sm-10">
+            <textarea style="height: 200px;" class="form-control" asp-for="Content"></textarea>
+            <span asp-validation-for="Content"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+</form>

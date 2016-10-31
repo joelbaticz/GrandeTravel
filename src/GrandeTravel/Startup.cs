@@ -49,6 +49,7 @@ namespace GrandeTravel
             services.AddScoped<IPackageRepository, PackageRepository>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
         }
 

@@ -40,13 +40,20 @@ else
 else
 {
 
+<div class="package-separator"></div>
+
 <div class="search-result">
 
-        @foreach (var item in Model.Packages)
-        {
+        @*@foreach (var item in Model.Packages)*@
+        @*@foreach (var stuff in Model.Packages.Select((item, i) => new { item , i }))*@
+        @for(int itemNo = 0; itemNo<Model.Packages.Count();itemNo++)
+        { 
+            var item = Model.Packages.ElementAt(itemNo);
+
+
             <div class="package">
                 <div class="package-inner">
-
+                    
                     <div class="package-thumbnail">
                         @*<img width="280" height="200" src="~/images/nothumbnail.jpg" />*@
                         @{
@@ -60,52 +67,136 @@ else
                             }
                         }
 
-                        
+
                         @*item.ThumbnailUrl*@
                     </div>
-                    <div class="package-name">
-                        @{
-                            string shortName = item.Name;
+                    <div>
+                        <div class="package-name">
+                            @{
+                                string shortName = item.Name;
 
-                            if (shortName.Length > 30)
-                            {
-                                shortName = shortName.Remove(30) + "...";
+                                if (shortName.Length > 20)
+                                {
+                                    shortName = shortName.Remove(20) + "...";
+                                }
                             }
-                        }
-                        @shortName
+                            @shortName
 
+                        </div>
+                        <div class="package-price">
+                            $@item.Price
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="package-price">
-                        $@item.Price
-                    </div>
-                    <div class="package-description">
-                        @{         
-                            string shortDescription = item.Description;
+                        <div class="package-description">
+                            @{
+                                string shortDescription = item.Description;
 
-                            if (shortDescription.Length > 30)
-                            {
-                                shortDescription = shortDescription.Remove(30) + "...";
+                                if (shortDescription.Length > 30)
+                                {
+                                    shortDescription = shortDescription.Remove(30) + "...";
+                                }
                             }
-                        }
-                        @shortDescription
+                            @shortDescription
+
+                        </div>
+                        <div class="package-location">
+                            @*<p>Location: @item.Location</p>*@
+                            @*
+                            @{
+                                string loc = "";
+                                string before = "";
+                                string middle = "";
+                                string after = "";
+                                int from;
+                                int length;
+
+                                if (Model.Location != null)
+                                {
+                                    loc = item.Location;
+                                    from = 0;
+                                    length = loc.IndexOf(Model.Location, StringComparison.CurrentCultureIgnoreCase);
+
+
+                                    before = loc.Substring(from, length);
+
+                                    from = from + length;
+                                    length = Model.Location.Length;
+
+                                    middle = loc.Substring(from, length);
+
+                                    from = from + length;
+                                    length = loc.Length - from;
+
+                                    after = loc.Substring(from, length);
+                                }
+                                else
+                                {
+                                    before = item.Location;
+                                }
+
+                                <p>Location: @before<span style="background-color:dodgerblue; color: white; font-weight: bold;">@middle</span>@after</p>
+                                *@
+                                @if (Model.Location != null)
+                                {
+                                    @using System.Text.RegularExpressions;
+                                    <p>Location: @Html.Raw(Regex.Replace(item.Location, Model.Location, "<span style='background-color:dodgerblue; color: white; font - weight: bold; '>" + Model.Location + "</span>", RegexOptions.IgnoreCase))</p>
+                                    
+                                }
+                                else
+                                {
+                                    <p>Location: @item.Location</p>
+
+                                }
+                            @*}*@
+
+                        </div>
+                    
+                    
+                        <div class="package-rating">
+                            <p>
+                                Rating:&nbsp;
+                                @*
+                                <span class="view-stars">
+                                    @for (int i = 0; i < (int)Model.Ratings.ElementAt(0); i++)
+                                    {
+                                        <span class="glyphicon glyphicon-star star-full"></span>
+                                    }
+                                    @for (int i = 0; i < 5 - (int)Model.Ratings.ElementAt(0); i++)
+                                    {
+                                        <span class="glyphicon glyphicon-star star-empty"></span>
+                                    }
+                                </span>
+                                &nbsp;
+                                
+                                @if (Model.NumberOfReviews.ElementAt(itemNo) == 0)
+                                {
+                                    <span>No reviews</span>
+                                }
+                                else
+                                {
+                                    @String.Format("{0:0.0}", Model.Ratings.ElementAt(itemNo))<span> based on </span>@Model.NumberOfReviews<span>reviews</span>
+                                }
+                                    *@
+                            </p>
+                        </div>
                         
-                    </div>
 
-                    @if (User.IsInRole("Provider"))
-                    {
-                        <div class="package-edit">
-                            <a asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="package-buy">
-                            <a asp-controller="Packages" asp-action="Book" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>
-                        </div>
-                    }
+                        @if (User.IsInRole("Provider"))
+                        {
+                            <div class="package-edit">
+                                <a asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="package-buy">
+                                <a asp-controller="Packages" asp-action="Details" asp-route-id="@item.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>
+                            </div>
+                        }
 
 
-                    @*
+                        @*
             <td>@item.ProviderId</td>
             <td>@item.Name</td>
             <td>@item.ThumbnailUrl</td>
@@ -114,9 +205,9 @@ else
             <td>@item.Price</td>
 
             <td><a asp-controller="Packages" asp-action="Edit" asp-route-id="@item.PackageId">Edit</a></td>
-                    *@
+                        *@
 
-                </div>
+                    </div>
             </div>
 
             
@@ -133,4 +224,5 @@ else
     <div class="package-separator"></div>
     <a class="btn btn-primary" asp-controller="Packages" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> Create Package</a>
 }
-
+
+

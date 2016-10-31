@@ -1,0 +1,160 @@
+﻿@model PackageDetailsViewModel
+
+<h2>Package Details</h2>
+
+<div class="package-details">
+
+    <div class="package-details-name">
+        <h3>@Model.Name</h3>
+    </div>
+
+    <div class="package-details-rating">
+        <p>
+            Rating:&nbsp;
+            <span class="view-stars">
+                @for (int i = 0; i < (int) Model.Rating; i++)
+                {
+                    <span class="glyphicon glyphicon-star star-full"></span>
+                }
+                @for (int i = 0; i < 5 - (int)Model.Rating; i++)
+                {
+                    <span class="glyphicon glyphicon-star star-empty"></span>
+                }
+            </span>
+            &nbsp;
+            @if (Model.NumberOfReviews == 0)
+            {
+                <span>No reviews</span>
+            }
+            else
+            {
+                @String.Format("{0:0.0}", Model.Rating)<span> based on </span>@Model.NumberOfReviews<span>reviews</span>
+            }
+
+        </p>
+    </div>
+
+    <div class="package-details-thumbnail">
+        @if (Model.ThumbnailUrl == null || Model.ThumbnailUrl == "")
+        {
+        <img width="280" height="200" src="~/images/nothumbnail.jpg" />
+        }
+        else
+        {
+        <img width="280" height="200" src="../@Model.ThumbnailUrl" />
+        }
+        
+    </div>
+
+    <div class="package-details-description">
+        <p>@Model.Description</p>
+    </div>
+
+    <div class="package-details-location">
+        <p>Location: @Model.Location</p>
+    </div>
+
+    
+
+    <div class="package-details-price">
+        <h4>Available from:</h4>
+        <p>$@Model.Price</p>
+
+        <div class="package-details-book">
+            <a asp-controller="Packages" asp-action="Book" asp-route-id="@Model.PackageId" class="btn btn-secondary"><span class="glyphicon glyphicon-search"></span> Book now!</a>
+        </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+
+
+    <div class="package-details-map">
+        <p>Location on Google Map:</p>
+        <div id="map"></div>
+    </div>
+
+
+
+
+    <div class="package-details-feedback">
+        <h3>Feedbacks:</h3>
+        <div>
+            @*<button class="btn btn-primary" onclick="location.href='@Url.Action("Feedback", "Packages", )';return false;">Leave feedback</button>*@
+            <a asp-controller="Packages" asp-action="Feedback" asp-route-id="@Model.PackageId" class="btn btn-primary"><span class="glyphicon glyphicon-repeat"></span> Leave Feedback</a>
+        </div>
+
+        <br />
+        <div>
+            <p>@Model.NumberOfReviews feedback(s)</p>
+        </div>
+        @foreach (var item in Model.Feedbacks)
+        {
+            <div class="package-feedback">
+                <div class="package-feedback-header">
+                    <p>
+                        <span class="view-stars">
+                            @for (int i = 0; i < (int)Model.Rating; i++)
+                            {
+                                <span class="glyphicon glyphicon-star star-full"></span>
+                            }
+                            @for (int i = 0; i < 5 - (int)Model.Rating; i++)
+                            {
+                                <span class="glyphicon glyphicon-star star-empty"></span>
+                            }
+                        </span>
+                        (@item.Rating)
+                        
+                    <br />
+                       Review by <span style="color: orange">@item.FullName</span> on @item.Date</p>
+                    
+                </div>
+                <div class="package-feedback-content">
+                    <p>@item.Content</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script>
+
+    
+
+    function initMap()
+    {
+
+        var geocoder = new google.maps.Geocoder();
+        var address = "@Model.Location";
+        var latitude;
+        var longitude;
+
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+
+                var coords = { lat: latitude, lng: longitude };
+                var map = new google.maps.Map(document.getElementById('map'),
+                {
+                    zoom: 4,
+                    center: coords
+                });
+                var marker = new google.maps.Marker(
+                {
+                    position: coords,
+                    map: map
+                });
+
+
+            }
+        });
+
+      
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCO-lbtpvVh-C6BB73cY1x8-bcVH2IIXGw&callback=initMap">
+</script>

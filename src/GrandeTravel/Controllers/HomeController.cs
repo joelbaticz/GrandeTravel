@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using GrandeTravel.ViewModels;
 
+
+
 namespace GrandeTravel.Controllers
 {
     public class HomeController : Controller
