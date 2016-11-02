@@ -48,135 +48,150 @@ namespace GrandeTravel.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string  request, string location)
         {
+
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
-                IEnumerable<Package> packages = _packageRepo.GetAll();
-
-                /*IEnumerable<double> ratings=null;
-
-                foreach (var item in packages)
-                {
-                    IEnumerable<Feedback> feedbacks = _feedbackRepo.Query(f => f.PackageId == item.PackageId);
-                    double rating = feedbacks.Average(f => f.Rating);
-                    ratings.Append(rating);
-                    
-                }*/
-
-                DisplayAllPackagesViewModel vm = new DisplayAllPackagesViewModel
-                {
-                    Location = null,
-                    MinPrice = null,
-                    MaxPrice = null,
-
-                    Packages = _packageRepo.GetAll(),
-                   /* Ratings = ratings*/
-                    
-                };
-
-                return View(vm);
             }
-            else
+
+            IEnumerable<Package> packages=new List<Package>();
+
+            if (request == null || request == "" || request == "GetActive")
+            {
+                packages = _packageRepo.Query(p => p.IsActive == true);
+            }
+            else if (request == "GetDiscontinued")
+            {
+                packages = _packageRepo.Query(p => p.IsActive == false);
+            }
+            else if (request == "GetAll")
+            {
+                packages = _packageRepo.GetAll();
+            }
+            
+            if (location!=null && location!="")
+            {
+                packages = packages.Where(p => p.Location.ToLower().Contains(location.ToLower()));
+            }
+            
+
+            if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string userName = HttpContext.User.Identity.Name;
-
                 ApplicationUser user = await _userManagerService.FindByNameAsync(userName);
 
                 bool result = await _userManagerService.IsInRoleAsync(user, "Provider");
-
                 if (result)
                 {
-                    //return Content("You are a Provider bro!");
                     Provider specficProvider = _providerRepo.GetSingle(p => p.UserId == user.Id);
 
-                    DisplayAllPackagesViewModel vm = new DisplayAllPackagesViewModel
-                    {
-                        Location = null,
-                        MinPrice = null,
-                        MaxPrice = null,
-
-                        Packages = _packageRepo.Query(p => p.ProviderId == specficProvider.ProviderId)
-                    };
-
-                    return View(vm);
+                    packages = packages.Where(p => p.ProviderId == specficProvider.ProviderId);
                 }
-
-                result = await _userManagerService.IsInRoleAsync(user, "Customer");
-
-                if (result)
-                {
-                    //return Content("You are a Customer bro!");
-                    DisplayAllPackagesViewModel vm = new DisplayAllPackagesViewModel
-                    {
-                        Location = null,
-                        MinPrice = null,
-                        MaxPrice = null,
-
-                        Packages = _packageRepo.GetAll()
-                    };
-
-                    return View(vm);
-
-                }
-
-                return Content("You are an Unknow User bro!");
-
-
-                //var result = await _roleManagerService.us
-                //Provider provider = _providerRepo.GetSingle(p => p.UserId == user.Id);
-
-
             }
+
+
+            // -------- Packages gathered -> collect Ratings and Feedbacks ----------
+
+            List<double> packageRatings = new List<double>();
+            List<int> packageNumberOfReviews = new List<int>();
+
+            foreach (var item in packages)
+            {
+                /*IEnumerable<Feedback> feedbacks = _feedbackRepo.Query(f => f.PackageId == item.PackageId);*/
+
+                double actualRating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average();
+                packageRatings.Add(actualRating);
+
+                int actualNumberOfReviews = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.FeedbackId).Count();
+                packageNumberOfReviews.Add(actualNumberOfReviews);
+            }
+
+            DisplayAllPackagesViewModel vm = new DisplayAllPackagesViewModel
+            {
+                Location = location,
+                MinPrice = null,
+                MaxPrice = null,
+
+                Packages = packages,
+                Ratings = packageRatings,
+                NumberOfReviews = packageNumberOfReviews
+            };
+
+
+            return View(vm);
+
         }
 
+ 
         [HttpPost]
         public IActionResult Index(DisplayAllPackagesViewModel vm)
         {
             if (ModelState.IsValid)
             {
 
-                vm.Packages = _packageRepo.GetAll();
+                // ----------- You can only filter Active Packages - only customer can ------- //
 
+                string location = vm.Location.ToLower();
+                string minPrice = vm.MinPrice;
+                string maxPrice = vm.MaxPrice;
 
+                IEnumerable<Package> packages = new List<Package>();
+                packages = _packageRepo.Query(p => p.IsActive == true);
 
-                if (vm.Location != null)
+                //vm.Packages = _packageRepo.GetAll();
+
+                if (location != null)
                 {
-                    string loc = vm.Location.ToLower();
-                    vm.Packages = vm.Packages.Where(p => p.Location.ToLower().Contains(loc));
+                    packages = packages.Where(p => p.Location.ToLower().Contains(location));
                 }
-                if (vm.MinPrice != null)
+                if (minPrice != null)
                 {
-                    vm.Packages = vm.Packages.Where(p => p.Price >= Double.Parse(vm.MinPrice));
+                    packages = packages.Where(p => p.Price >= Double.Parse(minPrice));
                 }
-                if (vm.MaxPrice != null)
+                if (maxPrice != null)
                 {
-                    vm.Packages = vm.Packages.Where(p => p.Price <= Double.Parse(vm.MaxPrice));
+                    packages = packages.Where(p => p.Price <= Double.Parse(maxPrice));
                 }
 
-                /*
-                if (vm.Location=="")
+                // -------- Packages gathered -> collect Ratings and Feedbacks ----------
+
+                List<double> packageRatings = new List<double>();
+                List<int> packageNumberOfReviews = new List<int>();
+
+                foreach (var item in packages)
                 {
-                    vm.Packages = _packageRepo.Query(p => (p.Price > vm.MinPrice && p.Price < vm.MaxPrice));
+                    //IEnumerable<Feedback> feedbacks = _feedbackRepo.Query(f => f.PackageId == item.PackageId);
+
+                    double actualRating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average();
+                    packageRatings.Add(actualRating);
+
+                    int actualNumberOfReviews = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.FeedbackId).Count();
+                    packageNumberOfReviews.Add(actualNumberOfReviews);
                 }
-                else
-                {
-                    vm.Packages = _packageRepo.Query(p => p.Location == vm.Location);
-                }
-                */
 
+                vm.Packages = packages;
+                vm.Ratings = packageRatings;
+                vm.NumberOfReviews = packageNumberOfReviews;
+            };
 
-                return View(vm);
-
-            }
             return View(vm);
         }
-
-
+   
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+            int providerId = _providerRepo.GetSingle(p => p.UserId == currentUser.Id).ProviderId;
+
+
+            CreatePackageViewModel vm = new CreatePackageViewModel
+            {
+                ProviderId = providerId,
+                IsActive = true
+            };
+
+            return View(vm);
         }
 
         [HttpPost]
@@ -191,7 +206,8 @@ namespace GrandeTravel.Controllers
                     ThumbnailUrl = vm.ThumbnailUrl,
                     Location = vm.Location,
                     Description = vm.Description,
-                    Price = vm.Price
+                    Price = vm.Price,
+                    IsActive = vm.IsActive
                 };
 
                 _packageRepo.Create(newPackage);
@@ -216,7 +232,8 @@ namespace GrandeTravel.Controllers
                 ThumbnailUrl = editablePackage.ThumbnailUrl,
                 Location = editablePackage.Location,
                 Description = editablePackage.Description,
-                Price = editablePackage.Price
+                Price = editablePackage.Price,
+                IsActive = editablePackage.IsActive
             };
 
             return View(vm);
@@ -235,7 +252,8 @@ namespace GrandeTravel.Controllers
                     ThumbnailUrl = vm.ThumbnailUrl,
                     Location = vm.Location,
                     Description = vm.Description,
-                    Price = vm.Price
+                    Price = vm.Price,
+                    IsActive = vm.IsActive
                 };
 
                 _packageRepo.Update(editedPackage);
@@ -293,6 +311,7 @@ namespace GrandeTravel.Controllers
                 ProviderId = currentPackage.ProviderId,
                 PackageId = currentPackage.PackageId,
                 Name = currentPackage.Name,
+                CompanyName = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId).DisplayName,
                 Rating = packageRating,
                 NumberOfReviews = packageFeedbackNumber,
                 Location = currentPackage.Location,

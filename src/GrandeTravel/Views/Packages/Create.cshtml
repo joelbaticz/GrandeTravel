@@ -1,6 +1,6 @@
 ﻿@model CreatePackageViewModel
 
-<h2>Create Package</h2>
+<h2>Create New Package</h2>
 
 <form class="form-horizontal" asp-controller="Packages" asp-action="Create" method="post" role="form">
     
@@ -9,6 +9,8 @@
         <input type="hidden" asp-for="ProviderId" value="@Model.ProviderId"/>
     </div>*@
 
+    <input type="hidden" asp-for="ProviderId" value="@Model.ProviderId" />
+    @*
     <div class="form-group">
         <label asp-for="ProviderId" class="control-label col-sm-2">Provider Id:</label>
         <div class="col-sm-10">
@@ -16,7 +18,7 @@
             <span asp-validation-for="ProviderId"></span>
         </div>
     </div>
-
+        *@
    
     <div class="form-group">
         <label asp-for="Name" class="control-label col-sm-2">Name:</label>
@@ -54,7 +56,20 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary col-sm-offset-2">Add Package</button>
+    <div class="form-group">
+        <label class="control-label col-sm-2" asp-for="IsActive">Status Active:</label>
+        <div class="col-sm-10 custom-checkbox">
+            <!-- don't need to specify input="checkbox" because the datatype is bool -->
+            <input type="checkbox" asp-for="IsActive" />
+            <span asp-validation-for="IsActive"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Add Package</button>
+        </div>
+    </div>
 
 
 </form>

@@ -19,9 +19,11 @@ namespace GrandeTravel.ViewModels
         public string Location { get; set; }
         [Required]
         public string Description { get; set; }
-       
         public string ThumbnailUrl { get; set; }
         [Required]
         public double Price { get; set; }
+        [Required]
+        public bool IsActive { get; set; }
+
     }
 }

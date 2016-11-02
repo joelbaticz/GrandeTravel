@@ -1,4 +1,6 @@
-﻿<div>
+﻿@model GrandeTravel.ViewModels.HomeIndexViewModel
+
+<div>
 
     <div class="row">
         <div class="startpagelogo">
@@ -26,14 +28,14 @@
             <h1>Escape to Paradise. Australia awaits!</h1>
             <div class="center-align">
 
-                <form class="form-horizontal" asp-controller="Packages" asp-action="Index" method="get" role="form">
+                <form class="form-horizontal" asp-controller="Home" asp-action="Index" method="post" role="form">
 
                     <div class="form-group">
                         @*<label class="control-label col-sm-3" for="destination">Destination: </label>*@
                         <div class="col-sm-11">
-                            <div style="border-radius: 15px; box-shadow: 8px 8px 10px 0px rgba(0,0,0,0.75);" class="input-group">
+                            <div  class="input-group">
                                 <span class="input-group-addon">Destination:</span>
-                                <input for="destination" class="form-control" type="text" placeholder="your destination" />
+                                <input asp-for="Destination" class="form-control" type="text" placeholder="your destination" />
                             </div>
                         </div>
                     </div>
@@ -46,206 +48,342 @@
             </div>
         </div>
 
-        @* ---------------- CARUSEL START --------------------- *@
+        @*Html.ActionLink("Index", "Packages", "Index", new { location="Syd", minPrice="", maxPrice="" });"*@
 
-        <style>
-            .carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-    width: 210px;
-    height: 150px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 10px 10px 19px 0px rgba(0,0,0,0.75);
-}
+        @*
 
-            carousel-control {
-                /*background: linear-gradient(to top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 20%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%);*/
-                background: none;
-                border-radius: 10px;
-            }
+        @{ 
+            string loc = "syd";
+        }
+        <input name="myTextBox" runat="server" type="text" placeholder="your destination" />
+        <a href="@Url.Action("Index", "Packages", new { location = myTextBox.value })">Get Adelaide Only</a>
 
-            .carousel {
-                background: none;
-                background: radial-gradient(ellipse at center, rgba(15,15,15,1) 0%,rgba(28,28,28,0) 70%);
-                height: 230px;
-                width: 70%;
-                margin: 10px auto 10px auto;
-                //border: 1px solid rgba(255, 255, 255, 30);
-                border-radius: 20px;
-                    /*radial-gradient(ellipse at center, rgba(15,15,15,1) 0%,rgba(28,28,28,0) 100%);*/
-            }
+            *@
 
-            .carousel-indicators {
-                bottom: -10px;
-            }
-            .carousel .item {
-                min-height: 270px; 
-                height: 100%;
-                width:100%;
-                
-            }
-            
-            .carousel-caption h3,
-            .carousel .icon-container,
-            .carousel-caption button {
-                /*background-color: #09c;*/
-                bottom: -10px;
-                margin-top: 20px;
-            }
+            @* ---------------- CARUSEL START --------------------- *@
 
-            .carousel-control.right,
-            .carousel-control.left {
-                background-image: none;
-            }
-
-            .carousel .icon-container {
-                display: inline-block;
-                font-size: 25px;
-                line-height: 25px;
-                padding: 1em;
-                text-align: center;
-                border-radius: 50%;
-            }
-
-            .carousel-indicators li {
-                background: none;
-                color: aqua;
-                width: 10px;
-                height: 10px;
-                border-radius: 2px;
-            }
-            .carousel-indicators .active {
-                background-color: deepskyblue;
-                background: linear-gradient(135deg, rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%);
-
-                border: 2px solid white;
-                width: 12px;
-                height: 12px;
-                 box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.75);
-            }
-
-            .p {
-  padding-top: 125px;
-  text-align: center;
-}
-
-            .left {
-                background: none;
-            }
-
-        </style>
-
-        <div class="container">
-            <br>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-
-                    <div class="item active">
-                        <img src="~/images/nothumbnail.jpg" alt="Chania" width="210" height="150">
-                        <div class="carousel-caption">
-                            <h3>Tasmania</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="~/images/unnamed--564c8aa252.jpg" alt="Chania" width="210" height="150">
-                        <div class="carousel-caption">
-                            <h3>Great Ocean Road</h3>
-                            <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="~/images/unnamed--564c8aa252.jpg" alt="Flower" width="210" height="150">
-                        <div class="carousel-caption">
-                            <h3 class="icon-container" data-animation="animated bounceInDown">
-                                <span class="glyphicon glyphicon-heart"></span>
-                            </h3>
-                            <h3>Urulu</h3>
-                            <p>Beatiful flowers in Kolymbari, Crete.</p>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <img src="~/images/nothumbnail.jpg" alt="Flower" width="210" height="150">
-                        <div class="carousel-caption">
-                            <h3>Cape Tribulation</h3>
-                            <p>Beatiful flowers in Kolymbari, Crete.</p>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-
-        @* --------- CARUSEL END -----------*@
-
-
-        <script>
-            /* Demo Scripts for Bootstrap Carousel and Animate.css article
-* on SitePoint by Maria Antonietta Perna
-*/
-            (function ($) {
-
-                //Function to animate slider captions 
-                function doAnimations(elems) {
-                    //Cache the animationend event in a variable
-                    var animEndEv = 'webkitAnimationEnd animationend';
-
-                    elems.each(function () {
-                        var $this = $(this),
-                            $animationType = $this.data('animation');
-                        $this.addClass($animationType).one(animEndEv, function () {
-                            $this.removeClass($animationType);
-                        });
-                    });
+            <style>
+                .carousel-inner > .item > img,
+                .carousel-inner > .item > a > img {
+                    width: 210px;
+                    height: 150px;
+                    margin: auto;
+                    border-radius: 10px;
+                    box-shadow: 10px 10px 19px 0px rgba(0,0,0,0.75);
                 }
 
-                //Variables on page load 
-                var $myCarousel = $('#carousel-example-generic'),
-                    $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
+                carousel-control {
+                    /*background: linear-gradient(to top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 20%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%);*/
+                    background: none;
+                    border-radius: 10px;
+                }
 
-                //Initialize carousel 
-                $myCarousel.carousel();
+                .carousel {
+                    background: none;
+                    background: radial-gradient(ellipse at center, rgba(15,15,15,1) 0%,rgba(28,28,28,0) 70%);
+                    height: 260px;
+                    width: 70%;
+                    margin: 10px auto 10px auto;
+                    /*border: 1px solid rgba(255, 255, 255, 30);*/
+                    border-radius: 20px;
+                    /*radial-gradient(ellipse at center, rgba(15,15,15,1) 0%,rgba(28,28,28,0) 100%);*/
+                }
 
-                //Animate captions in first slide on page load 
-                doAnimations($firstAnimatingElems);
+                .carousel-indicators {
+                    bottom: -10px;
+                }
 
-                //Pause carousel  
-                $myCarousel.carousel('pause');
+                .carousel .item {
+                    min-height: 300px;
+                    height: 100%;
+                    width: 100%;
+                }
+
+                .carousel-caption h3,
+                .carousel .icon-container,
+                .carousel-caption button {
+                    /*background-color: #09c;*/
+                    bottom: -10px;
+                    margin-top: 20px;
+                }
+
+                .carousel-control.right,
+                .carousel-control.left {
+                    background-image: none;
+                }
+
+                .carousel .icon-container {
+                    display: inline-block;
+                    font-size: 25px;
+                    line-height: 25px;
+                    padding: 1em;
+                    text-align: center;
+                    border-radius: 50%;
+                }
+
+                .carousel-indicators li {
+                    background: none;
+                    color: aqua;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 2px;
+                }
+
+                .carousel-indicators .active {
+                    background-color: deepskyblue;
+                    background: linear-gradient(135deg, rgba(169,228,247,1) 0%,rgba(15,180,231,1) 100%);
+                    border: 2px solid white;
+                    width: 12px;
+                    height: 12px;
+                    box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.75);
+                }
+
+                .p {
+                    padding-top: 125px;
+                    text-align: center;
+                }
+
+                .left {
+                    background: none;
+                }
+            </style>
+
+            <div class="container">
+                <br>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        
+                        @for(int i=0; i<Model.BestPackagesWithRatings.Count();i++)
+                        {
+                            string extraclass = "";
+                            if (i == 1)
+                            {
+                                extraclass = "active";
+                            }
+
+                            var item = Model.BestPackagesWithRatings.ElementAt(i);
+                            <li data-target="#myCarousel" data-slide-to="@i" class="@extraclass"></li>
+                        }
+                        
+                        @*
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                            *@
+                            
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+
+                        @*
+                        <div class="item active">
+                            <img runat="server" src="@Url.Content(Model.BestPackagesWithRatings.ElementAt(0).Package.ThumbnailUrl)" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>@Model.BestPackagesWithRatings.ElementAt(0).Package.Name</h3>
+                                <p>@Model.BestPackagesWithRatings.ElementAt(0).Package.Description</p>
+                            </div>
+                        </div>
+                            *@
+
+                        @for (int i = 0; i < Model.BestPackagesWithRatings.Count(); i++)
+                        {
+                            var item = Model.BestPackagesWithRatings.ElementAt(i);
+
+                            string extraclass = "";
+                            if (i == 1)
+                            {
+                                extraclass = "active";
+                            }
+
+                            <div class="item @extraclass">
+                                @if (item.Package.IsActive == false)
+                                {
+                                    <img runat="server" width="210" height="150" src="@Url.Content("~/images/discontinued.jpg")" />
+                                }
+                                else if (item.Package.ThumbnailUrl == null || item.Package.ThumbnailUrl == "")
+                                {
+                                    <img runat="server" width="210" height="150" src="@Url.Content("~/images/nothumbnail.jpg")" />
+                                }
+                                else
+                                {
+                                    <img runat="server" width="210" height="150" src="@Url.Content(item.Package.ThumbnailUrl)" />
+                                }
+                                
+                              
+                                <div class="carousel-caption">
+                                    <h3>@item.Package.Name</h3>
+
+                                    <p>
+                                        @{
+                                            string shortName = item.Package.Description;
+
+                                            if (shortName.Length > 60)
+                                            {
+                                                shortName = shortName.Remove(60) + "...";
+                                            }
+                                        }
+                                        @shortName
+                                        @*item.Package.Description*@
+                                    </p>
+
+                                    <p>
+                                        <span class="view-stars">
+                                            @for (int j = 0; j < (int)item.Rating; j++)
+                                            {
+                                                <span class="glyphicon glyphicon-star star-full"></span>
+                                            }
+                                            @for (int j = 0; j < 5 - (int)item.Rating; j++)
+                                            {
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                            }
+                                        </span>
+                                        @item.Rating
+                                    </p>
+
+                                </div>
+                            </div>
+                        }
+                          
+
+                        @*
+                        <div class="item active">
+                            <img src="~/images/nothumbnail.jpg" alt="Chania" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>Tasmania</h3>
+                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="~/images/unnamed--564c8aa252.jpg" alt="Chania" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>Great Ocean Road</h3>
+                                <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="~/images/unnamed--564c8aa252.jpg" alt="Flower" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3 class="icon-container" data-animation="animated bounceInDown">
+                                    <span class="glyphicon glyphicon-heart"></span>
+                                </h3>
+                                <h3>Urulu</h3>
+                                <p>Beatiful flowers in Kolymbari, Crete.</p>
+                            </div>
+                        </div>
+                            
+                        <div class="item">
+                            <img src="~/images/nothumbnail.jpg" alt="Flower" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>Cape Tribulation</h3>
+                                <p>Beatiful flowers in Kolymbari, Crete.</p>
+                            </div>
+                        </div>
+                            *@
+
+                        @*
+                        <div class="item active">
+                            <img runat="server" src="@Url.Content(Model.BestPackagesWithRatings.ElementAt(0).Package.ThumbnailUrl)" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>@Model.BestPackagesWithRatings.ElementAt(0).Package.Name</h3>
+                                <p>@Model.BestPackagesWithRatings.ElementAt(0).Package.Description</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img runat="server" src="@Url.Content(Model.BestPackagesWithRatings.ElementAt(1).Package.ThumbnailUrl)" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>@Model.BestPackagesWithRatings.ElementAt(1).Package.Name</h3>
+                                <p>@Model.BestPackagesWithRatings.ElementAt(1).Package.Description</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img runat="server" src="@Url.Content(Model.BestPackagesWithRatings.ElementAt(2).Package.ThumbnailUrl)" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>@Model.BestPackagesWithRatings.ElementAt(2).Package.Name</h3>
+                                <p>@Model.BestPackagesWithRatings.ElementAt(2).Package.Description</p>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img runat="server"src="@Url.Content(Model.BestPackagesWithRatings.ElementAt(3).Package.ThumbnailUrl)" width="210" height="150">
+                            <div class="carousel-caption">
+                                <h3>@Model.BestPackagesWithRatings.ElementAt(3).Package.Name</h3>
+                                <p>@Model.BestPackagesWithRatings.ElementAt(3).Package.Description</p>
+                            </div>
+                        </div>
+                            *@
 
 
-                //Other slides to be animated on carousel slide event 
-                $myCarousel.on('slide.bs.carousel', function (e) {
-                    var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-                    doAnimations($animatingElems);
-                });
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
 
-            })(jQuery);
-
-        </script>
+            @* --------- CARUSEL END -----------*@
 
 
-    </div>
+            <script>
+                /* Demo Scripts for Bootstrap Carousel and Animate.css article
+    * on SitePoint by Maria Antonietta Perna
+    */
+                (function ($) {
+
+                    //Function to animate slider captions
+                    function doAnimations(elems) {
+                        //Cache the animationend event in a variable
+                        var animEndEv = 'webkitAnimationEnd animationend';
+
+                        elems.each(function () {
+                            var $this = $(this),
+                                $animationType = $this.data('animation');
+                            $this.addClass($animationType).one(animEndEv, function () {
+                                $this.removeClass($animationType);
+                            });
+                        });
+                    }
+
+                    //Variables on page load
+                    var $myCarousel = $('#carousel-example-generic'),
+                        $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
+
+                    //Initialize carousel
+                    $myCarousel.carousel();
+
+                    //Animate captions in first slide on page load
+                    doAnimations($firstAnimatingElems);
+
+                    //Pause carousel
+                    $myCarousel.carousel('pause');
+
+
+                    //Other slides to be animated on carousel slide event
+                    $myCarousel.on('slide.bs.carousel', function (e) {
+                        var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
+                        doAnimations($animatingElems);
+                    });
+
+                })(jQuery);
+
+            </script>
+
+
+
+
+</div>
 </div>
 
 

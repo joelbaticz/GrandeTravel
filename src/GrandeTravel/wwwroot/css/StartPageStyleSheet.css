@@ -12,18 +12,32 @@ body {
   background-size: cover;
 }
 
+div.banner {
+    background: radial-gradient(circle at center, rgba(48,191,253,1) 0%,rgba(21,91,225,0) 100%);
+    background: radial-gradient(circle at center, rgba(22, 213, 225,0.7) 0%,rgba(22, 213, 225,0) 100%);
+    /*background: none;*/
+    height: 100px;
+    display: block;  
+     
+}
 
 .startpagelogo a {
     float: left;
-    color: white;
     /*font: bold 40px airways;*/
     font-family: airways, 'Segoe Script';
     font-size: 40px;
     /*font-weight: bold;*/
+    color: white;
+    padding: 10px;
+    text-shadow: 2px 2px #000000;
+    transition: all 0.5s;
 }
 
 .startpagelogo a:hover {
     text-decoration: none;
+    color: rgba(48,191,253,1);
+    cursor: pointer;
+    transition: all 0.5s;
 }
 
 .startpagelinks {
@@ -61,34 +75,53 @@ label {
 }
     */
 
+.input-group
+{
+    border-radius: 15px;
+    /*box-shadow: 8px 8px 10px 0px rgba(0,0,0,0.75);*/
+    box-shadow: 0px 0px 26px -1px rgba(142,228,237,1), 8px 8px 10px 0px rgba(0,0,0,1);
+}
+
 .form-control {
     height: 30px;
     font-size: 14px;
-    box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);
+    /*box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);*/
     border: 1px solid white;
 
     border-radius: 15px;
     background-color: rgba(42,128,137,0.5);
     border: 1px solid white;
+    border-left: none;
     color: white;
-}
-
-
-
-.form-control:focus {
-    box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
-    border: 1px solid #bfa45b;
 }
 
 .input-group-addon {
     border-radius: 15px;
     background-color: rgba(42,128,137,0.5);
     border: 1px solid white;
+    border-right: none;
         /*cornflowerblue;*/
     color: white;
-    
-    
 }
+
+.form-control:focus {
+    box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
+    border: 1px solid #bfa45b;
+    border-left: none;
+}
+
+.form-control:focus~input-group-addon {
+    border: 1px solid #bfa45b;
+    border-right: none;
+
+}
+
+/*
+ .input-group-addon:focus {
+    border: 1px solid #bfa45b;
+    border-right: none;
+}
+ */
 
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
@@ -127,3 +160,24 @@ input:-moz-placeholder { /* Firefox 18- */
     width: 310px;
     margin: auto;
 }
+
+.view-stars span.star-full {
+    /*background: linear-gradient(to bottom, rgba(252,234,187,1) 0%,rgba(252,205,77,1) 50%,rgba(248,181,0,1) 51%,rgba(251,223,147,1) 100%);
+    text-shadow: white;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;*/
+    color: orange;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+
+}
+
+.view-stars span.star-empty {
+    /*background: linear-gradient(to bottom, rgba(255,249,249,1) 0%,rgba(188,206,214,1) 50%);
+    text-shadow: white;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;*/
+    color: white;
+    text-shadow: 2px 2px rgba(0,0,0,0.5);
+
+}
+

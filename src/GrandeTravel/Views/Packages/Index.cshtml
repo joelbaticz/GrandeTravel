@@ -1,9 +1,31 @@
 ﻿@model DisplayAllPackagesViewModel
+@using GrandeTravel.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> _userManagerService;
+@inject GrandeTravel.Services.IProviderRepository _providerRepo;
 
 
 @if (User.IsInRole("Provider"))
 {
-    <h2>Provider's Packages (@User.Identity.Name)</h2>
+    <h2>Provider's Packages 
+    
+    @{
+        /*ApplicationUser currentUser = _userManagerService.FindUserByName(User.Identity.Name);*/
+
+        ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+
+        string fullName = "";
+
+        if (User.IsInRole("Provider"))
+        {
+            fullName = _providerRepo.GetSingle(p => p.UserId == currentUser.Id).DisplayName;
+        }
+
+
+     }
+    
+    
+     - @fullName (@User.Identity.Name)</h2>
 }
 else
 {
@@ -33,7 +55,7 @@ else
 @if (Model.Packages == null || Model.Packages.Count() == 0)
 {
     <br />
-    <p>Unfortunately we could not find suitable packages!</p>
+    <p>No packages are matching these conditions!</p>
     <br />
 
 }
@@ -57,13 +79,21 @@ else
                     <div class="package-thumbnail">
                         @*<img width="280" height="200" src="~/images/nothumbnail.jpg" />*@
                         @{
-                            if (item.ThumbnailUrl == null || item.ThumbnailUrl == "")
+                            if (item.IsActive == false)
+                            {
+
+                                <img width="280" height="200" src="~/images/discontinued.jpg" />
+                            }
+                            else if (item.ThumbnailUrl == null || item.ThumbnailUrl == "")
                             {
                                 <img width="280" height="200" src="~/images/nothumbnail.jpg" />
                             }
                             else
                             {
-                                <img width="280" height="200" src="@item.ThumbnailUrl" />
+                                @*<img runat="server" width="280" height="200" src="@item.ThumbnailUrl" />*@
+
+                                <img runat="server" width="280" height="200" src = "@Url.Content(item.ThumbnailUrl)" />
+                                
                             }
                         }
 
@@ -155,19 +185,26 @@ else
                     
                         <div class="package-rating">
                             <p>
-                                Rating:&nbsp;
-                                @*
-                                <span class="view-stars">
-                                    @for (int i = 0; i < (int)Model.Ratings.ElementAt(0); i++)
-                                    {
-                                        <span class="glyphicon glyphicon-star star-full"></span>
-                                    }
-                                    @for (int i = 0; i < 5 - (int)Model.Ratings.ElementAt(0); i++)
-                                    {
-                                        <span class="glyphicon glyphicon-star star-empty"></span>
-                                    }
-                                </span>
-                                &nbsp;
+                                @*Rating:&nbsp;
+                                @Model.Ratings.ElementAt(itemNo)*@
+                                
+                                @if (Model.Ratings != null)
+                                {
+                                    <span class="view-stars">
+                                        @for (int i = 0; i < (int)Model.Ratings.ElementAt(itemNo); i++)
+                                        {
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                        }
+                                        @for (int i = 0; i < 5 - (int)Model.Ratings.ElementAt(itemNo); i++)
+                                        {
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                        }
+                                    </span>
+                                   
+                                }
+                               @* &nbsp;*@
+                                
+                                    
                                 
                                 @if (Model.NumberOfReviews.ElementAt(itemNo) == 0)
                                 {
@@ -175,9 +212,9 @@ else
                                 }
                                 else
                                 {
-                                    @String.Format("{0:0.0}", Model.Ratings.ElementAt(itemNo))<span> based on </span>@Model.NumberOfReviews<span>reviews</span>
+                                    @String.Format("{0:0.0}", Model.Ratings.ElementAt(itemNo))<span> - </span>@Model.NumberOfReviews.ElementAt(itemNo)<span> review(s)</span>
                                 }
-                                    *@
+                                
                             </p>
                         </div>
                         
@@ -223,6 +260,11 @@ else
 {
     <div class="package-separator"></div>
     <a class="btn btn-primary" asp-controller="Packages" asp-action="Create"><span class="glyphicon glyphicon-plus"></span> Create Package</a>
+@*
+    <a asp-controller="Packages" asp-action="Index" asp-route-id="" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Show All</a>
+    <a asp-controller="Packages" asp-action="Index" asp-route-id="Active" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Show Active</a>
+    <a asp-controller="Packages" asp-action="Index" asp-route-id="Discontinued" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Show Discontinued</a>
+    *@
 }
 
 

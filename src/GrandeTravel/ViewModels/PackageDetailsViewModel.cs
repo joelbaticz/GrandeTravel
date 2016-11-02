@@ -12,6 +12,7 @@ namespace GrandeTravel.ViewModels
         public int ProviderId { get; set; }
         public int PackageId { get; set; }
         public string Name { get; set; }
+        public string CompanyName { get; set; }
 
         public double Rating { get; set; }
         public int NumberOfReviews { get; set; }

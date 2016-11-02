@@ -251,6 +251,9 @@ namespace GrandeTravel.Controllers
 
             bool IsUserAuthenticated = HttpContext.User.Identity.IsAuthenticated;
 
+
+            
+
             if (IsUserAuthenticated)
             {
                 if (HttpContext.User.IsInRole("Provider"))
