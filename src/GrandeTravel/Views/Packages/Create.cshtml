@@ -60,8 +60,14 @@
         <label class="control-label col-sm-2" asp-for="IsActive">Status Active:</label>
         <div class="col-sm-10 custom-checkbox">
             <!-- don't need to specify input="checkbox" because the datatype is bool -->
+            @*
             <input type="checkbox" asp-for="IsActive" />
             <span asp-validation-for="IsActive"></span>
+            *@
+            <div class="checkbox">
+                <input id="checkbox1" type="checkbox" asp-for="IsActive">
+                <label for="checkbox1"></label>
+            </div>
         </div>
     </div>
 

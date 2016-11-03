@@ -21,6 +21,7 @@ namespace GrandeTravel.Controllers
         private ICustomerRepository _customerRepo;
         private IProviderRepository _providerRepo;
         private IFeedbackRepository _feedbackRepo;
+        private IBookingRepository _bookingRepo;
 
         private UserManager<ApplicationUser> _userManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
@@ -34,12 +35,13 @@ namespace GrandeTravel.Controllers
         */
 
         // SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo
-        public PackagesController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
+        public PackagesController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo, IBookingRepository bookingRepo)
         {
             _packageRepo = packageRepo;
             _customerRepo = customerRepo;
             _providerRepo = providerRepo;
             _feedbackRepo = feedbackRepo;
+            _bookingRepo = bookingRepo;
             _userManagerService = userManagerService;
             _roleManagerService = roleManagerService;
 
@@ -48,14 +50,14 @@ namespace GrandeTravel.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(string  request, string location)
+        public async Task<IActionResult> Index(string request, string location)
         {
 
             if (!HttpContext.User.Identity.IsAuthenticated)
             {
             }
 
-            IEnumerable<Package> packages=new List<Package>();
+            IEnumerable<Package> packages = new List<Package>();
 
             if (request == null || request == "" || request == "GetActive")
             {
@@ -69,12 +71,12 @@ namespace GrandeTravel.Controllers
             {
                 packages = _packageRepo.GetAll();
             }
-            
-            if (location!=null && location!="")
+
+            if (location != null && location != "")
             {
                 packages = packages.Where(p => p.Location.ToLower().Contains(location.ToLower()));
             }
-            
+
 
             if (HttpContext.User.Identity.IsAuthenticated)
             {
@@ -123,7 +125,7 @@ namespace GrandeTravel.Controllers
 
         }
 
- 
+
         [HttpPost]
         public IActionResult Index(DisplayAllPackagesViewModel vm)
         {
@@ -177,7 +179,7 @@ namespace GrandeTravel.Controllers
 
             return View(vm);
         }
-   
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -335,7 +337,7 @@ namespace GrandeTravel.Controllers
                 PackageId = id,
                 PackageName = currentPackage.Name,
                 CompanyName = currentProvider.DisplayName
-                
+
             };
 
             return View(vm);
@@ -349,7 +351,7 @@ namespace GrandeTravel.Controllers
                 Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == vm.PackageId);
                 Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
 
-                string userFullName="";
+                string userFullName = "";
                 if (!User.Identity.IsAuthenticated)
                 {
                     userFullName = "Anonymous";
@@ -360,7 +362,7 @@ namespace GrandeTravel.Controllers
                     {
                         ApplicationUser user = await _userManagerService.FindByNameAsync(User.Identity.Name);
                         Customer customer = _customerRepo.GetSingle(c => c.UserId == user.Id);
-                        
+
                         userFullName = customer.FirstName + " " + customer.LastName;
                     }
                     else if (User.IsInRole("Provider"))
@@ -391,5 +393,76 @@ namespace GrandeTravel.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Book(int id)
+        {
+            Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == id);
+            Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
+
+            BookPackageViewModel vm = new BookPackageViewModel
+            {
+                PackageId = currentPackage.PackageId,
+                ProviderId = currentProvider.ProviderId,
+                CompanyName = currentProvider.DisplayName,
+                PackageName = currentPackage.Name,
+                NumberOfPeople = 1,
+                DateFor = DateTime.Now,
+                Price = currentPackage.Price
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Book(BookPackageViewModel vm)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Content("Login required!");
+            }
+            else if (User.IsInRole("Customer"))
+            {
+                if (ModelState.IsValid)
+                {
+                    Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == vm.PackageId);
+                    Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
+                    ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+                    Customer currentCustomer = _customerRepo.GetSingle(c => c.UserId == currentUser.Id);
+
+                    Booking actualBooking = new Booking
+                    {
+                        CustomerId = currentCustomer.CustomerId,
+                        PackageId = currentPackage.PackageId,
+                        DateMade = DateTime.Now,
+                        DateFor = vm.DateFor,
+                        NumberOfPeople = vm.NumberOfPeople,
+                        SpecialRequirements = vm.SpecialRequirements,
+                        Price = currentPackage.Price * vm.NumberOfPeople,
+                        IsPaid = false
+                    };
+
+                    _bookingRepo.Create(actualBooking);
+
+                    return RedirectToAction("BookedPackages", "Packages");
+                }
+                return View(vm);
+            }
+            return Content("Must be a Customer to book a package! Nice try though! ;)");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> BookedPackages()
+        {
+            ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+            Customer currentCustomer = _customerRepo.GetSingle(c => c.UserId == currentUser.Id);
+
+            DisplayAllBookingsViewModel vm = new DisplayAllBookingsViewModel
+            {
+                BookedPackages = _bookingRepo.Query(b => b.CustomerId == currentCustomer.CustomerId).ToList()
+            };
+            return View(vm);
+        }
+
+
     }
 }

@@ -110,7 +110,8 @@
                                         @if (User.Identity.IsAuthenticated && User.IsInRole("Provider"))
                                         {
                                             <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-search"></span></p><span class="caret"></span><p> Packages</p></a>
+                                                @*<a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-search"></span></p><span class="caret"></span><p> Packages</p></a>*@
+                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span style="font-size: 14px; margin-bottom: 0px" class="glyphicon glyphicon-search"></span> Packages<span style="font-size: 10px; margin-top: 0px" class="glyphicon glyphicon-chevron-down"></span></p></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="@Url.Action("Index", "Packages", new { request = "GetAll", location="" })">All Packages</a></li>
                                                     <li><a href="@Url.Action("Index", "Packages")">Active Packages</a></li>
@@ -121,10 +122,11 @@
                                         else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
                                         {
                                             <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-search"></span></p><span class="caret"></span><p> Packages</p></a>
+                                                @*<a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-search"></span></p><span class="caret"></span><p> Packages</p></a>*@
+                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span style="font-size: 14px; margin-bottom: 0px" class="glyphicon glyphicon-search"></span> Packages<span style="font-size: 10px; margin-top: 0px" class="glyphicon glyphicon-chevron-down"></span></p></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a href="@Url.Action("Index", "Packages")">Search</a></li>
-                                                    <li><a href="@Url.Action("Index", "Packages", new { request = "GetBooked", location="" })">Booked Packages</a></li>
+                                                    <li><a href="@Url.Action("BookedPackages", "Packages")">Booked Packages</a></li>
                                                 </ul>
                                             </li>
                                         }
@@ -140,7 +142,8 @@
                                     {
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-cog"></span></p><span class="caret"></span><p> Account</p></a>
+                                                @*<a class="dropdown-toggle" data-toggle="dropdown"><p><span class="glyphicon glyphicon-cog"></span></p><span class="caret"></span><p> Account</p></a>*@
+                                                <a class="dropdown-toggle" data-toggle="dropdown"><p><span style="font-size: 14px; margin-bottom: 0px" class="glyphicon glyphicon-cog"></span> Account<span style="font-size: 10px; margin-top: 0px" class="glyphicon glyphicon-chevron-down"></span></p></a>
                                                 <ul class="dropdown-menu">
                                                     <li><a asp-controller="Account" asp-action="EditAccount">Account Settings</a></li>
                                                     <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>

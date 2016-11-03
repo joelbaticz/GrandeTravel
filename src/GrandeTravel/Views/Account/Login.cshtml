@@ -23,22 +23,29 @@
     <div class="form-group">
         <label class="control-label col-sm-2" asp-for="RememberMe"></label>
         <div class="col-sm-10 custom-checkbox">
-            <!-- don't need to specify input="checkbox" because the datatype is bool -->
-            <input type="checkbox" asp-for="RememberMe" checked="checked"/>
-            <span asp-validation-for="RememberMe"></span>
+
+            @*<input class="checkbox checkbox-primary" type="checkbox" asp-for="RememberMe" checked="checked" />
+            <span asp-validation-for="RememberMe"></span>*@
+
+            @*
+            <label class="btn btn-secondary">
+                <!-- don't need to specify input="checkbox" because the datatype is bool -->
+                <input class="checkbox checkbox-primary" type="checkbox" asp-for="RememberMe" checked="checked" />
+                <span class="glyphicon glyphicon-ok"></span>
+            </label>
+                *@
+
+            <div class="checkbox">
+                <input id="checkbox1" type="checkbox" asp-for="RememberMe">
+                <label for="checkbox1"></label>
+            </div>
+
         </div>
     </div>
-@*
-    <div class="custom-checkbox">
-        <input id="cb4" type="checkbox">
-        <label for="cb4">Indeterminate</label>
-    </div>
-    *@
-       
+      
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-primary">Login</button>
         </div>
     </div>
-
 </form>

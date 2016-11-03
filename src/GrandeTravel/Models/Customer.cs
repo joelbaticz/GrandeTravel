@@ -15,7 +15,7 @@ namespace GrandeTravel.Models
         public string LastName { get; set; }
 
         //Relationships
-        //public List<Booking> Booking { get; set; }
+        public List<Booking> Booking { get; set; }
 
     
     }

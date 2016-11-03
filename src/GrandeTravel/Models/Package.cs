@@ -21,7 +21,6 @@ namespace GrandeTravel.Models
 
         public List<Feedback> Feedbacks { get; set; }
 
-
         //association
         public Provider Provider { get; set; }
 

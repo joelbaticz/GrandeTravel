@@ -3,7 +3,11 @@
     font-family: 'airways';
     src: url('../fonts/airways.ttf') format('truetype');
 }
-    
+
+@font-face {
+    font-family: 'fontawesome-webfont';
+    src: url('../fonts/fontawesome-webfont.ttf') format('truetype');
+}
 
 body { 
   background: url(../images/Background7.jpg) no-repeat center center fixed; 
@@ -18,12 +22,17 @@ body {
 }
 
 p {
-    color: #d0d0d0;
+    color: white;
 }
 
 label {
-    /*color: #d0d0d0;*/
+    color: #d5d5d5;
     color: white;
+}
+
+a {
+    color: white;
+    text-decoration: underline;
 }
 
 
@@ -79,6 +88,7 @@ div.banner-image a {
     padding: 10px;
     text-shadow: 2px 2px #000000;
     transition: all 0.5s;
+    text-decoration: none;
 }
 
 div.banner-image a:hover {
@@ -132,6 +142,10 @@ div.banner-clear {
     /*height: 50px;*/
 }
 
+.navbar-header a {
+    text-decoration: none;
+}
+
 /*
 .navbar-nav {
     height: 50px;
@@ -162,6 +176,10 @@ div.banner-clear {
     border-left: 1px dashed #202020;
     margin: 0px;
     padding: 0px;
+}
+
+ul.navbar-nav li a {
+    text-decoration: none;
 }
 
 ul.navbar-nav li a p {
@@ -257,7 +275,7 @@ h3 {
 
 
 
-.btn, .btn:hover, .btn:focus, .btn:active
+.btn, .btn:hover, .btn:focus /*, .btn:active*/
 {
   height: 30px;
   background: linear-gradient(to bottom, rgba(205,181,155,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
@@ -270,18 +288,23 @@ h3 {
   /* disaled text color: rgba(205,181,155,1);*/
   
 }
+
+a.btn {
+    text-decoration: none;
+}
     
 .btn-primary, .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     /*background: linear-gradient(to bottom, rgba(37,103,188,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(43,148,229,1) 100%);*/
     background: linear-gradient(to bottom, rgba(160,106,55,1) 0%,rgba(183,100,30,1) 49%,rgba(229,178,106,1) 100%);
     color: white;
     border-color: #5d502b;
+
 }
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
     background: linear-gradient(to bottom, rgba(38,159,220,1) 0%,rgba(21,171,235,1) 49%,rgba(117,188,243,1) 100%);
     color: white;
-    border: 4px dotted #2b303d;
+    border: 1px solid rgba(32,124,202,1)
 }
 
 /*.btn-primary:active,*/
@@ -318,8 +341,14 @@ h3 {
 
 }
 
-
-
+/*
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+    */
 
 
 /*
@@ -904,4 +933,275 @@ span.star-empty {
     margin-right: 10px;
     background-color: rgba(22, 113, 125, 0.5);
 }
+
+/*
+table {
+    border-radius: 10px;
+  border: 1px solid #167F92;
+}
+
+.table {
+    margin: 10px;
+    width: 95%;
+    background-color: rgba(22, 113, 125, 0.5);
+      color: #024457;
+  border-radius: 10px;
+
+}
+
+tbody {
+    border: none;
+}
+
+thead {
+    background-color: rgba(52, 143, 175, 0.5);
+    background: none;
+    border-radius: 10px;
+      border: 1px solid #167F92;
+}
+
+.table-bordered {
+    border: none;
+}
+    */
+
+/*
+table {
+	background: #f5f5f5;
+	border-collapse: separate;
+	box-shadow: inset 0 1px 0 #fff;
+	font-size: 12px;
+	line-height: 24px;
+	margin: 30px auto;
+	text-align: left;
+	width: 800px;
+}	
+
+th {
+	background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+	border-left: 1px solid #555;
+	border-right: 1px solid #777;
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #333;
+	box-shadow: inset 0 1px 0 #999;
+	color: #fff;
+  font-weight: bold;
+	padding: 10px 15px;
+	position: relative;
+	text-shadow: 0 1px 0 #000;	
+}
+
+th:after {
+	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+	content: '';
+	display: block;
+	height: 25%;
+	left: 0;
+	margin: 1px 0 0 0;
+	position: absolute;
+	top: 25%;
+	width: 100%;
+}
+
+th:first-child {
+	border-left: 1px solid #777;	
+	box-shadow: inset 1px 1px 0 #999;
+}
+
+th:last-child {
+	box-shadow: inset -1px 1px 0 #999;
+}
+
+td {
+	border-right: 1px solid #fff;
+	border-left: 1px solid #e8e8e8;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #e8e8e8;
+	padding: 10px 15px;
+	position: relative;
+	transition: all 300ms;
+}
+
+td:first-child {
+	box-shadow: inset 1px 0 0 #fff;
+}	
+
+td:last-child {
+	border-right: 1px solid #e8e8e8;
+	box-shadow: inset -1px 0 0 #fff;
+}	
+
+tr {
+	background: url(http://jackrugile.com/images/misc/noise-diagonal.png);	
+}
+
+tr:nth-child(odd) td {
+	background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);	
+}
+
+tr:last-of-type td {
+	box-shadow: inset 0 -1px 0 #fff; 
+}
+
+tr:last-of-type td:first-child {
+	box-shadow: inset 1px -1px 0 #fff;
+}	
+
+tr:last-of-type td:last-child {
+	box-shadow: inset -1px -1px 0 #fff;
+}	
+
+tbody:hover td {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+
+tbody:hover tr:hover td {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+}
+    */
+
+
+table {
+    background: steelblue;
+    font-family: "Open Sans", arial;
+    border-collapse: collapse;
+    margin: 0px;
+
+    background-color: rgba(22, 113, 125, 0.5);
+    border: 1px solid rgba(72, 183, 195, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: #024457;
+    padding: 5px;
+}
+
+th {
+  width: 5%;
+  font-weight: lighter;
+  text-shadow: 1px 1px 0 #38678f ;
+  color: white;
+  border: 1px solid rgba(72, 183, 195, 0.7);
+  box-shadow: inset 0px 1px 2px #568ebd;
+  transition: all 0.2s;
+  padding: 5px;
+}
+
+tr {
+ /* border-bottom: 1px solid #cccccc;*/
+  border: none;
+  border: 1px solid rgba(72, 183, 195, 0.7);
+}
+td {
+  /*border-right: 1px solid #cccccc;*/
+  padding: 0px 5px 0px 5px;
+  margin: 0px;
+  transition: all 0.2s;
+  border: none;
+  color: #023447;
+  /*box-shadow: inset 0px 1px 2px #568ebd;*/
+
+}
+
+table:focus {
+    background-color: black;
+}
+
+td input {
+  font-size: 14px;
+  background: none;
+  outline: 1px solid white;
+  border: 0;
+    border: 1px solid rgba(72, 183, 195, 0.7);
+  box-shadow: inset 0px 1px 2px #568ebd;
+  display: table-cell;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(22, 113, 125, 0.5);
+  color: white;
+}
+/*
+td input:focus {
+  box-shadow: 0 1px 0 steelblue;
+  color: steelblue;
+}
+::-moz-selection {
+  background: steelblue;
+  color: white;
+}
+::selection {
+  background: steelblue;
+  color: white;
+}
+    */
+td button {
+    margin: 2px;
+    width: 100%;
+    height: 25px;
+}
+
+
+
+.checkbox {
+}
+
+.checkbox input[type="checkbox"] {
+    opacity: 0;
+}
+
+.checkbox input[type="checkbox"] + label::before {
+    content: "";
+    margin-left: -20px;
+    position: absolute;
+    padding-left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    opacity: 1;
+
+    /*background: linear-gradient(to bottom, rgba(38,159,220,1) 0%,rgba(21,171,235,1) 49%,rgba(117,188,243,1) 100%);*/
+    background-color: rgba(42,128,137,0.5);
+    color: white;
+    border: 1px solid rgba(52,144,202,1);
+    /*border: 1px solid white;*/
+    font-size: 14px;
+    box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);
+    transition: all 1s;
+}
+
+.checkbox input[type="checkbox"] + label::after {
+    margin-left: -15px;
+    padding-left: 5px;
+}
+
+.checkbox input[type="checkbox"]:focus + label::before {
+    box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
+    border: 1px solid #bfa45b;
+    
+}
+
+.checkbox input[type="checkbox"]:hover + label::before {
+    border: 1px solid white;
+    transition: all 1s;
+}
+
+.checkbox input[type="checkbox"]:active + label::before {
+    box-shadow: 0px 0px 25px 3px rgba(242,228,237,1);
+    transition: all 1s;
+}
+
+
+.checkbox input[type="checkbox"]:checked + label {
+    opacity: 1;
+    transition: all 1s;
+}   
+
+.checkbox input[type="checkbox"]:checked + label::before {
+    font-family: fontawesome-webfont;
+    content: "\f00c";
+    transition: all 1s;
+
+}   
+
+
 
