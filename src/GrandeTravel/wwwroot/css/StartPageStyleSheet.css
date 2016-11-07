@@ -77,67 +77,92 @@ label {
 
 .input-group
 {
+    border: 1px solid white;
     border-radius: 15px;
+    
     /*box-shadow: 8px 8px 10px 0px rgba(0,0,0,0.75);*/
     box-shadow: 0px 0px 26px -1px rgba(142,228,237,1), 8px 8px 10px 0px rgba(0,0,0,1);
+    background-color: rgba(42,128,137,0.5);
 }
+
+.input-group:focus
+{
+        border: 1px solid #bfa45b;
+}
+  
+  
 
 .form-control {
     height: 30px;
     font-size: 14px;
     /*box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);*/
     border: 1px solid white;
-
+    /*border: none;*/
     border-radius: 15px;
+
+
     background-color: rgba(42,128,137,0.5);
     border: 1px solid white;
     border-left: none;
+
+    background: none;
+
     color: white;
 }
 
 .input-group-addon {
     border-radius: 15px;
+    border: none;
     background-color: rgba(42,128,137,0.5);
-    border: 1px solid white;
-    border-right: none;
+    /*border: none;*/
+    background: none;
+    /*border: 1px solid white;
+    border-right: none;*/
         /*cornflowerblue;*/
     color: white;
 }
 
+
 .form-control:focus {
+    
     box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
-    border: 1px solid #bfa45b;
-    border-left: none;
+    border: 3px solid #bfa45b;
+    border-radius: 15px !important;
+    background: none !important;
+    
+    
 }
 
 .form-control:focus~input-group-addon {
     border: 1px solid #bfa45b;
     border-right: none;
-
+    background: none;
 }
+    
 
-/*
+
  .input-group-addon:focus {
     border: 1px solid #bfa45b;
     border-right: none;
 }
- */
+ 
 
-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+/*
+input::-webkit-input-placeholder {
   color: white;
 }
-input::-moz-placeholder { /* Firefox 19+ */
+input::-moz-placeholder {
   color: white;
   opacity: 1;
 }
-input:-ms-input-placeholder { /* IE 10+ */
+input:-ms-input-placeholder {
   color: white;
 }
-input:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder {
   color: white;
   opacity: 1;
 }
-
+*/
 
 
 .center-align {
@@ -181,3 +206,49 @@ input:-moz-placeholder { /* Firefox 18- */
 
 }
 
+
+.dropdown-menu
+{
+    min-width: 330px;
+    border-radius: 2px;
+    background-color: rgba(42,128,137,0.5);
+    border: 1px solid white;
+    box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
+    border: 1px solid #bfa45b;
+    border: 1px solid white;
+
+    color: white;
+}
+
+.dropdown-menu > li > a {
+    color: #e0e0e0;
+}
+
+
+.dropdown-menu .active > a,
+.dropdown-menu .active > a:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #dfc95b;
+    box-shadow: 0px 0px 5px 2px #dfc95b;
+    text-shadow: 1px 1px rgba(85, 85, 85, 0.7);
+}
+
+.dropdown-menu b {
+    background-color: blue;
+}
+.dropdown-toggle {
+    border-radius: 15px;
+    border-color: blue;
+    background: none;
+}
+/*
+.input-group {
+    border-radius: 15px;
+    border-color: blue;
+}
+    */
+
+input [typeahead] {
+    border: blue;
+}

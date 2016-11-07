@@ -1,5 +1,10 @@
 ﻿@model GrandeTravel.ViewModels.HomeIndexViewModel
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js"></script>
+
+
 <div>
 
     <div class="row">
@@ -29,13 +34,20 @@
             <div class="center-align">
 
                 <form class="form-horizontal" asp-controller="Home" asp-action="Index" method="post" role="form">
+                    
+                    <div class="form-group" ng-app="locationApp" ng-controller="locationCtrl">
 
-                    <div class="form-group">
+                        @*<pre>{{locationData | json}}</pre>*@
+
+                        
+
                         @*<label class="control-label col-sm-3" for="destination">Destination: </label>*@
                         <div class="col-sm-11">
                             <div  class="input-group">
                                 <span class="input-group-addon">Destination:</span>
-                                <input asp-for="Destination" class="form-control" type="text" placeholder="your destination" />
+                                @*<input asp-for="Destination" class="form-control" type="text" placeholder="your destination" />*@
+
+                                <input style="border: none;" asp-for="Destination" type="text" autocomplete="off" class="form-control" placeholder="Search for a location" ng-model="selectedLocation" uib-typeahead="location for location in locationData | filter:$viewValue | limitTo:5">
                             </div>
                         </div>
                     </div>
@@ -381,7 +393,26 @@
             </script>
 
 
+        <script>
 
+        'use strict';
+
+        angular.module('locationApp', ['ui.bootstrap']);
+
+        'use strict';
+
+        angular
+            .module('locationApp')
+            .controller('locationCtrl', function ($scope, $http) {
+
+                $http.get('Api/GetAllPackageLocation').success(function (data) {
+
+                    $scope.locationData = data;
+                });
+
+            });
+
+        </script>
 
 </div>
 </div>
