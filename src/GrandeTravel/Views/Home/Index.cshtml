@@ -10,7 +10,7 @@
     <div class="row">
         <div class="startpagelogo">
             <h2>
-                <a asp-controller="Packages" asp-action="Index">Grande Travel</a>
+                <a asp-controller="Home" asp-action="SinglePage">Grande Travel</a>
             </h2>
         </div>
         <section class="startpagelinks">
@@ -253,6 +253,7 @@
                                             }
                                         </span>
                                         @item.Rating
+                                        
                                     </p>
 
                                 </div>
@@ -405,7 +406,7 @@
             .module('locationApp')
             .controller('locationCtrl', function ($scope, $http) {
 
-                $http.get('Api/GetAllPackageLocation').success(function (data) {
+                $http.get('/Api/GetAllPackageLocation').success(function (data) {
 
                     $scope.locationData = data;
                 });

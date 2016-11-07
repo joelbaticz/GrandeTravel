@@ -21,7 +21,7 @@
     @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
     
     @{
-        if (ControllerName != "Home" || ActionName != "Index")
+        if ((ControllerName != "Home" || ActionName != "Index") && (ControllerName != "Home" || ActionName != "SinglePage"))
         {
             <link href="~/css/StyleSheet.css" rel="stylesheet" />
         }
@@ -39,7 +39,7 @@
             <div class="container">
                 
                 @{
-                    if (ControllerName != "Home" || ActionName != "Index")
+                    if ((ControllerName != "Home" || ActionName != "Index") && (ControllerName != "Home" || ActionName != "SinglePage"))
                     {
                         <div class="banner">
                             <div class="banner-center">

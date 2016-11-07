@@ -9,6 +9,7 @@ namespace GrandeTravel.Models
     {
         public Package Package { get; set; }
         public double Rating { get; set; }
+        public int NumberOfFeedbacks { get; set; }
 
     }
 }

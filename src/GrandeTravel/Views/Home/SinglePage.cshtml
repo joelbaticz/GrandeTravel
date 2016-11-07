@@ -1,0 +1,242 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js"></script>
+
+<div ng-app="locationApp" ng-controller="locationCtrl">
+
+    <div class="row">
+        <div class="startpagelogo">
+            <h2>
+                <a asp-controller="Home" asp-action="Index">Grande Travel</a>
+            </h2>
+            <p>Single Page</p>
+        </div>
+        <section class="startpagelinks">
+            <div>
+                <a asp-controller="Account" asp-action="Login">Sign in</a> |
+                <a asp-controller="Account" asp-action="Register">Sign up</a>
+            </div>
+
+        </section>
+    </div>
+
+    <div class="startpageclear"></div>
+
+
+    <br />
+    <br />
+
+    <div class="fluid">
+        <div class="row">
+            <h1>Escape to Paradise. Australia awaits!</h1>
+            <div class="center-align" >
+
+                <form class="form-horizontal" role="form">
+
+                    <div class="form-group">
+
+                        @*<pre>{{locationData | json}}</pre>*@
+
+                        @*<pre>{{packageData | json}}</pre>*@
+
+
+
+                        @*<label class="control-label col-sm-3" for="destination">Destination: </label>*@
+                        <div class="col-sm-11">
+                            <div class="input-group">
+                                <span class="input-group-addon">Destination:</span>
+                                @*<input asp-for="Destination" class="form-control" type="text" placeholder="your destination" />*@
+
+                                <input style="border: none;" type="text" autocomplete="off" class="form-control" placeholder="Search for a location" ng-model="selectedLocation" uib-typeahead="location for location in locationData | filter:$viewValue | limitTo:5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-11">
+                            <button ng-click="getAllPackages()" class="btn btn-link col-sm-12">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="showPackages" class="search-result">
+                
+                <div ng-show="packageDataEmpty">
+                    <p>No packages found with current filter!</p>
+                </div>
+
+                <div ng-repeat="package in packageData">
+                    <div class="package">
+                        <div class="package-inner">
+                            <div class="package-thumbnail" ng-init="myVar = '../images/aboutimage.jpg'">
+                                <div ng-show="!package.package.isActive">
+                                    <img width="280" height="200" src="~/images/discontinued.jpg" />
+                                </div>
+                                <div ng-show="package.package.isActive">
+
+                                    <div ng-show="package.package.thumbnailUrl==nul">
+                                        <img width="280" height="200" src="~/images/nothumbnail.jpg" />
+                                    </div>
+                                    <div ng-show="package.package.thumbnailUrl!=nul">
+                                        @*<img width="280" height="200" ng-src="{{myVar}}" />*@
+                                        <img width="280" height="200" ng-src="{{package.package.thumbnailUrl}}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="package-name">
+                                    {{trimToLength(package.package.name)}}
+                                </div>
+                                <div class="package-price">
+                                    ${{package.package.price}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="package-description">
+                                {{trimToLength(package.package.description)}}
+                            </div>
+                            <div class="package-location">
+                                Location: &nbsp;
+                                {{trimToLength(package.package.location)}}
+                            </div>
+                            <div class="package-rating">
+                                <p>
+
+                                        @*
+                <div ng-repeat="i in getNumber(4)">
+                    <span>{{$index+1}}</span>
+                    <span class="glyphicon glyphicon-star star-full"></span>
+                </div>
+                                        *@
+
+                                        <span ng-show="package.rating<1" class="view-stars">
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                                <span class="glyphicon glyphicon-star star-empty"></span>
+                                        </span>
+                                        <span ng-show="package.rating>=1 && package.rating<2" class="view-stars">
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                        </span>
+                                        <span ng-show="package.rating>=2 && package.rating<3" class="view-stars">
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                        </span>
+                                        <span ng-show="package.rating>=3 && package.rating<4" class="view-stars">
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                        </span>
+                                        <span ng-show="package.rating>=4 && package.rating<5" class="view-stars">
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-empty"></span>
+                                        </span>
+                                        <span ng-show="package.rating==5" class="view-stars">
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                            <span class="glyphicon glyphicon-star star-full"></span>
+                                        </span>
+                                        <span>
+                                            &nbsp;
+                                            {{package.rating}}
+
+                                            - {{packge.numberOfReviews}} reviews(s)
+                                        </span>
+                                        
+                                    </p>
+                    
+                            </div>
+                            <div class="package-buy">
+                                @*{{packId = package.package.packageId}}
+                                <a ng-click="routeWithId(packId)" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>*@
+                                <a ng-click="routeWithId(package.package.packageId)" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>
+                                @*<a ng-click="routeWithId(100)" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Book now!</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div> @* End: ng-repeat *@
+            </div> @* ng-show *@
+            
+        </div>
+    </div>
+
+    <script>
+
+        'use strict';
+
+        angular.module('locationApp', ['ui.bootstrap']);
+
+        'use strict';
+
+        angular
+            .module('locationApp')
+            .controller('locationCtrl', function ($scope, $http) {
+
+                $scope.showPackages = false;
+                $scope.packageDataEmpty = false;
+                $scope.selectedLocation = "";
+
+                $http.get('/Api/GetAllPackageLocation').success(function (data) {
+
+                    $scope.locationData = data;
+                });
+
+
+                $scope.getAllPackages = function () {
+
+                    $scope.showPackages = true;
+                        
+                    $http({ method: 'GET', url: '/Api/GetAllPackages/?location=' + $scope.selectedLocation }).success(function (data) {
+                        $scope.packageData = data;
+
+                        $scope.packageDataEmpty = false;
+                        if ($scope.packageData[0]==null)
+                        {
+                            $scope.packageDataEmpty = true;
+                        }
+                        
+                    })
+                }
+
+                $scope.trimToLength = function (data) {
+
+                    if (data.length>30)
+                    {
+                        return data.substring(0, 30)+'...';
+                    }
+                    return data;
+
+                    
+                }
+
+                $scope.routeWithId = function (packageId) {
+
+                    alert('This is the Id:'+ packageId);
+                    $(location).attr('href', '/Packages/Details/' + packageId);
+                    return;
+                }
+
+
+                $scope.getNumber = function (num) {
+                    return new Array(num);
+                }
+
+            });
+
+    </script>
+</div>
+

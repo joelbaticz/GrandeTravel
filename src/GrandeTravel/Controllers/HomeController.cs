@@ -35,7 +35,7 @@ namespace GrandeTravel.Controllers
 
             List<PackageWithRating> packagesWithRating = new List<PackageWithRating>();
 
-            
+
 
             foreach (var item in allPackages)
             {
@@ -55,11 +55,11 @@ namespace GrandeTravel.Controllers
             };
 
             return View(vm);
-            
+
             //return View();
         }
 
-        
+
         [HttpPost]
         public IActionResult Index(HomeIndexViewModel vm)
         {
@@ -93,6 +93,12 @@ namespace GrandeTravel.Controllers
 
         [HttpGet]
         public IActionResult ContactPost()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult SinglePage()
         {
             return View();
         }
