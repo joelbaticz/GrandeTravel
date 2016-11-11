@@ -51,6 +51,7 @@ namespace GrandeTravel
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IEmailService, EmailService>();
 
         }
 
@@ -66,6 +67,7 @@ namespace GrandeTravel
 
             app.UseStaticFiles();
             app.UseIdentity();
+            
 
 
             app.UseMvcWithDefaultRoute();

@@ -22,15 +22,17 @@ namespace GrandeTravel.Controllers
         private UserManager<ApplicationUser> _userManagerService;
         private SignInManager<ApplicationUser> _signInManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
+        private IEmailService _emailService;
 
         private IProviderRepository _providerRepo;
         private ICustomerRepository _customerRepo;
 
-        public AccountController(UserManager<ApplicationUser> userManagerService, SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo)
+        public AccountController(UserManager<ApplicationUser> userManagerService, SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, IProviderRepository providerRepo, ICustomerRepository customerRepo)
         {
             _userManagerService = userManagerService;
             _signInManagerService = signInManagerService;
             _roleManagerService = roleManagerService;
+            _emailService = emailService;
             _providerRepo = providerRepo;
             _customerRepo = customerRepo;
 

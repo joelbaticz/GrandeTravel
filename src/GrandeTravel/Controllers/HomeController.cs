@@ -22,12 +22,14 @@ namespace GrandeTravel.Controllers
         private UserManager<ApplicationUser> _userManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
 
+        
         private IProviderRepository _providerRepo;
         private ICustomerRepository _customerRepo;
         private IPackageRepository _packageRepo;
         private IFeedbackRepository _feedbackRepo;
+        private IEmailService _emailService;
 
-        public HomeController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
+        public HomeController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, IProviderRepository providerRepo, ICustomerRepository customerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
         {
             _userManagerService = userManagerService;
             _roleManagerService = roleManagerService;
@@ -35,6 +37,7 @@ namespace GrandeTravel.Controllers
             _customerRepo = customerRepo;
             _packageRepo = packageRepo;
             _feedbackRepo = feedbackRepo;
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -123,10 +126,20 @@ namespace GrandeTravel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Contact(ContactViewModel vm)
+        public async Task<IActionResult> Contact(ContactViewModel vm)
         {
             if (ModelState.IsValid)
             {
+
+                //string result = await _emailService.SendEmailAsync("joel.baticz@gmail.com", "subjtest", "test");
+
+                EmailService es = new EmailService();
+
+                await es.SendEmailAsync("joel.baticz@gmail.com", "subjtest", "test");
+
+
+                //return Content(result);
+
                 return RedirectToAction("ContactPost", "Home");
             }
             return View(vm);
