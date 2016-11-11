@@ -165,7 +165,7 @@ namespace GrandeTravel.Controllers
 
         //ReturnUrl is returning the user to page which required authentication
         [HttpGet]
-        public IActionResult Login(string returnUrl = "")
+        public IActionResult Login(string returnUrl) // returnUrl = ""
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -237,14 +237,16 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
             await _signInManagerService.SignOutAsync();
 
-            return RedirectToAction("Index", "Packages");
+            return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult EditAccount()
         {
@@ -299,6 +301,7 @@ namespace GrandeTravel.Controllers
             //         return RedirectToAction("Index", "Packages");
         }
 
+        [Authorize (Roles ="Provider")]
         [HttpGet]
         public async Task<IActionResult> EditProvider()
         {
@@ -327,6 +330,7 @@ namespace GrandeTravel.Controllers
 
         }
 
+        [Authorize(Roles = "Provider")]
         [HttpPost]
         public async Task<IActionResult> EditProvider(EditProviderViewModel vm)
         {
@@ -386,6 +390,7 @@ namespace GrandeTravel.Controllers
      
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public async Task<IActionResult> EditCustomer()
         {
@@ -414,6 +419,7 @@ namespace GrandeTravel.Controllers
 
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public async Task<IActionResult> EditCustomer(EditCustomerViewModel vm)
         {
@@ -451,6 +457,16 @@ namespace GrandeTravel.Controllers
 
         }
 
+        [HttpGet]
+        public IActionResult AccessDenied(string ReturnUrl)
+        {
+            AccessDeniedViewModel vm = new AccessDeniedViewModel
+            {
+                ReturnUrl = ReturnUrl
+            };
+
+            return View(vm);
+        }
 
     }
 }

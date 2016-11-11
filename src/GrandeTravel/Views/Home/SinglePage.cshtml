@@ -5,19 +5,12 @@
 <div ng-app="locationApp" ng-controller="locationCtrl">
 
     <div class="row">
-        <div class="startpagelogo">
+        <div class="startpage-logo">
             <h2>
                 <a asp-controller="Home" asp-action="Index">Grande Travel</a>
             </h2>
             <p>Single Page</p>
         </div>
-        <section class="startpagelinks">
-            <div>
-                <a asp-controller="Account" asp-action="Login">Sign in</a> |
-                <a asp-controller="Account" asp-action="Register">Sign up</a>
-            </div>
-
-        </section>
     </div>
 
     <div class="startpageclear"></div>
@@ -52,11 +45,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-11">
-                            <button ng-click="getAllPackages()" class="btn btn-link col-sm-12">Search</button>
+                        <div class="col-sm-11 col-sm-offset-4">
+                            <div class="link-shadow" style="width: 80px; height: 30px;">
+                                <button ng-click="getAllPackages()" class="btn btn-link">Search</button>
+                            </div>
                         </div>
                     </div>
-                </form>
+
+</form>
             </div>
             <div ng-show="showPackages" class="search-result">
                 
@@ -225,7 +221,7 @@
 
                 $scope.routeWithId = function (packageId) {
 
-                    alert('This is the Id:'+ packageId);
+                    /*alert('This is the Id:'+ packageId);*/
                     $(location).attr('href', '/Packages/Details/' + packageId);
                     return;
                 }

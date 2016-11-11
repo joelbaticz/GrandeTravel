@@ -48,7 +48,8 @@ namespace GrandeTravel.Controllers
 
         }
 
-
+        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index(string request, string location)
         {
@@ -125,7 +126,8 @@ namespace GrandeTravel.Controllers
 
         }
 
-
+        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(DisplayAllPackagesViewModel vm)
         {
@@ -180,6 +182,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize (Roles = "Provider")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -196,6 +199,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Provider")]
         [HttpPost]
         public IActionResult Create(CreatePackageViewModel vm)
         {
@@ -220,7 +224,7 @@ namespace GrandeTravel.Controllers
         }
 
 
-
+        [Authorize(Roles = "Provider")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -241,6 +245,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Provider")]
         [HttpPost]
         public IActionResult Edit(EditPackageViewModel vm)
         {
@@ -265,6 +270,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Provider")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -277,6 +283,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Provider")]
         [HttpGet]
         public IActionResult DeleteCommit(int id)
         {
@@ -291,7 +298,8 @@ namespace GrandeTravel.Controllers
 
         }
 
-
+        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Details(int id)
         {
@@ -326,6 +334,8 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Feedback(int id)
         {
@@ -343,6 +353,8 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Feedback(LeaveFeedbackViewModel vm)
         {
@@ -388,12 +400,15 @@ namespace GrandeTravel.Controllers
 
         }
 
+        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult FeedbackPost()
         {
             return View();
         }
 
+        [Authorize (Roles = "Customer")]
         [HttpGet]
         public IActionResult Book(int id)
         {
@@ -413,6 +428,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public async Task<IActionResult> Book(BookPackageViewModel vm)
         {
@@ -450,6 +466,7 @@ namespace GrandeTravel.Controllers
             return Content("Must be a Customer to book a package! Nice try though! ;)");
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public async Task<IActionResult> BookedPackages()
         {

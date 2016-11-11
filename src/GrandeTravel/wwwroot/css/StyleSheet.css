@@ -35,6 +35,27 @@ a {
     text-decoration: underline;
 }
 
+a:visited {
+    color: cadetblue;
+    color: aquamarine;
+}
+
+.link-shadow {
+    /*background: linear-gradient(to bottom, rgba(0,0,0,0.0) 25%, rgba(0,0,0,0.60) 50%, rgba(0,0,0,0.0) 75%);*/
+    background: radial-gradient(rgba(142,228,237,0.6) 0%, rgba(0,0,0,0.0) 70%);
+    background: radial-gradient(rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 70%);
+    /*padding: 5px 10px 5px 10px;*/
+    padding: 0px;
+    padding-left: 5px;
+    border-radius: 5px;
+
+
+    /*box-shadow: 0px 0px 6px -1px rgba(142,228,237,1);*/
+    border-radius: 3px;
+    /*background-color: rgba(42,128,137,0.3);*/
+    /*background: linear-gradient(to right, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.60) 50%, rgba(0,0,0,0.0) 100%);*/
+}
+
 
 .container {
     /*background-color: rgba(255,255,255,0.0);*/
@@ -131,7 +152,7 @@ div.banner-clear {
     background-color: black;
     /*background: linear-gradient(to top, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 20%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%);*/
     /*background: linear-gradient(to bottom, rgba(174,188,191,1) 0%,rgba(110,119,116,1) 50%,rgba(10,14,10,1) 51%,rgba(10,8,9,1) 100%);*/
-   box-shadow: #c7d1dd 0px 5px;
+   /*box-shadow: #c7d1dd 0px 5px;*/
 
 }
 
@@ -239,14 +260,27 @@ ul.navbar-nav li a span {
 
 
 article {
-    margin: 10px 15px 10px 15px;
+    margin: 0px 0px 10px 0px;
+    padding: 15px 15px 10px 15px;
+    
 }
 
-
-footer {
-    border-top: 5px solid #d0d0d0;
-    padding: 10px;
+.page-separator-grey {
+    height: 3px;
+    background-color: #c7d1dd;
 }
+
+.page-separator-yellow {
+    height: 3px;
+    background-color: orange;
+}
+
+.page-separator-shadow {
+    margin-top: -3px;
+    height: 3px;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
 
 h1 {
     
@@ -290,6 +324,7 @@ h3 {
 }
 
 a.btn {
+    color: white;
     text-decoration: none;
 }
     
@@ -1163,9 +1198,11 @@ td button {
     background-color: rgba(42,128,137,0.5);
     color: white;
     border: 1px solid rgba(52,144,202,1);
+    border: 1px solid white;
     /*border: 1px solid white;*/
     font-size: 14px;
     box-shadow: 0px 0px 26px -1px rgba(142,228,237,1);
+    box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.5);
     transition: all 1s;
 }
 
@@ -1178,10 +1215,11 @@ td button {
     box-shadow: 0px 0px 25px 3px rgba(142,228,237,1);
     border: 1px solid #bfa45b;
     
+    
 }
 
 .checkbox input[type="checkbox"]:hover + label::before {
-    border: 1px solid white;
+    border: 1px solid #bfa45b;
     transition: all 1s;
 }
 
@@ -1203,5 +1241,80 @@ td button {
 
 }   
 
+/*
+.before-footer {
+    margin: 10px auto 20px auto;
+    border-top: 5px solid #d0d0d0;
+}
+    */
 
+footer {
+    margin-top: 10px;
+    padding: 10px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.45) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.45) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.10) 100%);
+    color: #b0b0b0;
+    font-size: 10px;
+}
 
+footer .foot-header {
+    color: dodgerblue;
+    font-weight: bold;
+}
+
+footer a {
+    text-decoration: none;
+    color: #b0b0b0;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+footer p {
+    color: #b0b0b0;
+    margin: auto 0px auto 0px;
+}
+
+footer span {
+    float: left;
+    color: white;
+    font-size: 12px;
+    height: 16px;
+}
+
+.footer-copyright {
+    width: 225px;
+    /*
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.45) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%,rgba(0,0,0,0.45) 100%);
+    background: linear-gradient(to right, rgba(0,0,0,0.60) 0%,rgba(0,0,0,0.10) 100%);
+    background: rgba(22, 113, 125, 0.6);
+
+    */
+    border-radius: 25px;
+    color: white;    
+    
+
+}
+
+.footer-copyright a {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-copyright-shadow {
+    width: 213px;
+    box-shadow: 0px 0px 6px 2px rgba(22, 213, 225,0.5);
+    border-radius: 25px;
+    background: none;
+    background-color: rgba(22, 213, 225,0.35);
+}
+
+.footer .text-muted {
+    color: #b0b0b0;
+}
+
+footer a:visited {
+    color: orange;
+    color: aquamarine;
+}

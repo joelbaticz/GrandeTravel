@@ -34,7 +34,13 @@
 
 </head>
         <body>
-
+            @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+            @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> *@
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            
 
             <div class="container">
                 
@@ -215,18 +221,83 @@
                 </nav>
                 *@
         
-                <div class="row">
-                    <article>
+                <div class="page-separator-grey"></div>
+                <div class="page-separator-shadow"></div>
+                <article>
+                    <div class="row">
                         @RenderBody()
-                    </article>
-                </div>
+                    </div>
+                </article>
+                <div class="page-separator-yellow"></div>
+                <div class="page-separator-shadow"></div>
 
 
                 @{
-                    if (ControllerName != "Home" || ActionName != "Index")
+                    if ((ControllerName != "Home" || ActionName != "Index") && (ControllerName != "Home" || ActionName != "SinglePage"))
                     {
+                        <div class="before-footer">
+
+                        </div>
                         <footer class="footer">
-                            &copy;Copyright 2016 Grande Travel
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <div class="foot-header">
+                                            Information
+                                        </div>
+                                        <a href="/Home/About">About Us</a><br />
+                                        <a>Privacy Policy</a><br />
+                                        <a>Terms & Conditions</a><br />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="foot-header">
+                                            Customer Service
+                                        </div>
+                                        <a href="/Home/Contact">Contact Us</a><br />
+                                        <a>Site Map</a><br />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="foot-header">
+                                            Extras
+                                        </div>
+                                        <a>Brands</a><br />
+                                        <a>Gift Vouchers</a><br />
+                                        <a>Affiliates</a><br />
+                                        <a>Specials</a><br />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="foot-header">
+                                            My Account
+                                        </div>
+                                        <a href="/Account/EditAccount">Account Settings</a><br />
+                                        <a href="/Packages">Package Search</a><br />
+                                        <a href="/Packages/BookedPackages">Booking History</a><br />
+                                        <a>Newsletter</a><br />
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="foot-header">
+                                            Contacts
+                                        </div>
+                                        <span class="glyphicon glyphicon-map-marker"></span><p>&nbsp;1 Water st, The Rocks, 2000, NSW, Australia</p>
+                                        <div class="clearfix"></div>
+                                        <span class="glyphicon glyphicon-phone"></span><p>&nbsp;(02) 1212-1414</p>
+                                        <div class="clearfix"></div>
+                                        <span class="glyphicon glyphicon-envelope"></span><p>&nbsp;admin@grandetravel.com</p>
+                                        <div class="clearfix"></div>
+                                        <span class="glyphicon glyphicon-time"></span><p>&nbsp;8am-8pm</p>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="container">
+                                        <div class="footer-copyright-shadow">
+                                            <div class="footer-copyright">
+                                                <p class="text-muted">&copy;Copyright 2016 Grande Travel by <a href="mailto:joel.baticz@gmail.com">Joel Baticz</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </footer>
                     }
                 }
@@ -238,11 +309,7 @@
             
             
             
-            @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
-            @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script> *@
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
       </body>
 
 </html>

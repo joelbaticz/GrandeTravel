@@ -19,11 +19,20 @@ namespace GrandeTravel.Controllers
     public class HomeController : Controller
     {
 
+        private UserManager<ApplicationUser> _userManagerService;
+        private RoleManager<IdentityRole> _roleManagerService;
+
+        private IProviderRepository _providerRepo;
+        private ICustomerRepository _customerRepo;
         private IPackageRepository _packageRepo;
         private IFeedbackRepository _feedbackRepo;
 
-        public HomeController(IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
+        public HomeController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
         {
+            _userManagerService = userManagerService;
+            _roleManagerService = roleManagerService;
+            _providerRepo = providerRepo;
+            _customerRepo = customerRepo;
             _packageRepo = packageRepo;
             _feedbackRepo = feedbackRepo;
         }
@@ -31,7 +40,7 @@ namespace GrandeTravel.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<Package> allPackages = _packageRepo.GetAll();
+            IEnumerable<Package> allPackages = _packageRepo.Query(p => p.IsActive == true).Take(5);
 
             List<PackageWithRating> packagesWithRating = new List<PackageWithRating>();
 
@@ -76,9 +85,41 @@ namespace GrandeTravel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
-            return View();
+            string name = "";
+            string email = "";
+
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+
+                string userName = HttpContext.User.Identity.Name;
+                ApplicationUser specificUser = await _userManagerService.FindByNameAsync(userName);
+
+
+                if (await _userManagerService.IsInRoleAsync(specificUser, "Provider"))
+                {
+                    name = _providerRepo.GetSingle(p => p.UserId == specificUser.Id).DisplayName;
+                    email = specificUser.Email;
+                }
+                else if (await _userManagerService.IsInRoleAsync(specificUser, "Customer"))
+                {
+                    name = _customerRepo.GetSingle(c => c.UserId == specificUser.Id).FirstName;
+                    name += " ";
+                    name += _customerRepo.GetSingle(c => c.UserId == specificUser.Id).LastName;
+                    email = specificUser.Email;
+                }
+            }
+
+            ContactViewModel vm = new ContactViewModel
+            {
+                Name = name,
+                Email = email,
+                Subject = "Subject",
+                Message = "Dear Grande Travel,\n\n...\n\nKind Regards,\n" + name
+            };
+
+            return View(vm);
         }
 
         [HttpPost]

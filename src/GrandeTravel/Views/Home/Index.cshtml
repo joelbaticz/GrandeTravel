@@ -1,5 +1,11 @@
 ﻿@model GrandeTravel.ViewModels.HomeIndexViewModel
 
+@using GrandeTravel.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> _userManagerService;
+@inject GrandeTravel.Services.IProviderRepository _providerRepo;
+@inject GrandeTravel.Services.ICustomerRepository _customerRepo;
+
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.js"></script>
@@ -8,18 +14,50 @@
 <div>
 
     <div class="row">
-        <div class="startpagelogo">
+        <div class="startpage-logo">
             <h2>
                 <a asp-controller="Home" asp-action="SinglePage">Grande Travel</a>
             </h2>
         </div>
-        <section class="startpagelinks">
-            <div>
-                <a asp-controller="Account" asp-action="Login">Sign in</a> |
-                <a asp-controller="Account" asp-action="Register">Sign up</a>
-            </div>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <section class="startpage-links">
+                <div>
+                    <a asp-controller="Account" asp-action="Register">Register</a> |
+                    <a href="@Url.Action("Login", "Account", new { returnUrl = "/Home/Index" })">Login</a>
+                    
+                </div>
+            </section>
+        }
+        else
+        {
+            <div class="startpage-controls">
+                <div>
 
-        </section>
+                    @* -------- Get FirstName for Customer or CompanyName for Provider *@
+
+                    @{
+                        ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+
+                        string fullName = "";
+
+                        if (User.IsInRole("Provider"))
+                        {
+                            fullName = _providerRepo.GetSingle(p => p.UserId == currentUser.Id).DisplayName;
+                        }
+                        else if (User.IsInRole("Customer"))
+                        {
+                            fullName = _customerRepo.GetSingle(c => c.UserId == currentUser.Id).FirstName;
+                        }
+                    }
+
+                    <label>Welcome, @fullName! &nbsp;</label>
+                    @*<label>Welcome, @User.Identity.Name</label> *@
+                    @*background: radial-gradient(circle at center, rgba(48,191,253,1) 0%,rgba(21,91,225,1) 100%);*@
+                    <button style="margin-top: -7px; padding: 4px; border: 1px solid rgba(32,124,202,1)" class="btn btn-secondary" onclick="location.href='@Url.Action("Logout", "Account")';return false;">Logout</button>
+                </div>
+            </div>
+        }
     </div>
 
     <div class="startpageclear"></div>
@@ -52,8 +90,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-11">
-                            <button type="submit" class="btn btn-link col-sm-12">Search</button>
+                        <div class="col-sm-11 col-sm-offset-4">
+                            <div class="link-shadow" style="width: 80px; height: 30px;">
+                                <button type="submit" class="btn btn-link">Search</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -166,10 +206,10 @@
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         
-                        @for(int i=0; i<Model.BestPackagesWithRatings.Count();i++)
+                        @for (int i=0; i<Model.BestPackagesWithRatings.Count();i++)
                         {
                             string extraclass = "";
-                            if (i == 1)
+                            if (i == 0)
                             {
                                 extraclass = "active";
                             }
@@ -205,7 +245,7 @@
                             var item = Model.BestPackagesWithRatings.ElementAt(i);
 
                             string extraclass = "";
-                            if (i == 1)
+                            if (i == 0)
                             {
                                 extraclass = "active";
                             }

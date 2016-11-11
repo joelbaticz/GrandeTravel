@@ -19,7 +19,7 @@
     <input type="hidden" asp-for="PackageId" />
 
     <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="CompanyName">Company Name</label>
+        <label class="control-label col-sm-2" asp-for="CompanyName">Company Name:</label>
         <div class="col-sm-10">
             <p class="form-control-static">@Model.CompanyName</p>
             <input type="hidden" asp-for="CompanyName" />
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="PackageName">Package</label>
+        <label class="control-label col-sm-2" asp-for="PackageName">Package:</label>
         <div class="col-sm-10">
             <p class="form-control-static">@Model.PackageName</p>
             <input type="hidden" asp-for="PackageName" />
@@ -39,7 +39,7 @@
 
 
     <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="Rating" >Rating (0-5)</label>
+        <label class="control-label col-sm-2" asp-for="Rating" >Rating (0-5):</label>
         <div class="col-sm-10">
             <input class="form-control" asp-for="Rating" />
             <span asp-validation-for="Rating"></span>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="Content">Feedback</label>
+        <label class="control-label col-sm-2" asp-for="Content">Feedback:</label>
         <div class="col-sm-10">
             <textarea style="height: 100px; min-height: 100px; min-width: 100%; max-width: 100%;" class="form-control" asp-for="Content"></textarea>
             <span asp-validation-for="Content"></span>

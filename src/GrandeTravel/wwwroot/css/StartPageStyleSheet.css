@@ -12,6 +12,32 @@ body {
   background-size: cover;
 }
 
+a {
+    color: white;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: cadetblue;
+    color: aquamarine;
+}
+
+.link-shadow {
+    /*background: linear-gradient(to bottom, rgba(0,0,0,0.0) 25%, rgba(0,0,0,0.60) 50%, rgba(0,0,0,0.0) 75%);*/
+    background: radial-gradient(rgba(142,228,237,0.6) 0%, rgba(0,0,0,0.0) 70%);
+    background: radial-gradient(rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 70%);
+    /*padding: 5px 10px 5px 10px;*/
+    padding: 0px;
+    padding-left: 5px;
+    border-radius: 5px;
+
+
+    /*box-shadow: 0px 0px 6px -1px rgba(142,228,237,1);*/
+    border-radius: 3px;
+    /*background-color: rgba(42,128,137,0.3);*/
+    /*background: linear-gradient(to right, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.60) 50%, rgba(0,0,0,0.0) 100%);*/
+}
+
 div.banner {
     background: radial-gradient(circle at center, rgba(48,191,253,1) 0%,rgba(21,91,225,0) 100%);
     background: radial-gradient(circle at center, rgba(22, 213, 225,0.7) 0%,rgba(22, 213, 225,0) 100%);
@@ -21,11 +47,11 @@ div.banner {
      
 }
 
-.startpagelogo {
+.startpage-logo {
     width: 235px;
 }
 
-.startpagelogo a {
+.startpage-logo a {
     float: left;
     /*font: bold 40px airways;*/
     font-family: airways, 'Segoe Script';
@@ -39,7 +65,7 @@ div.banner {
     transition: all 0.5s;
 }
 
-.startpagelogo p {
+.startpage-logo p {
     clear: left;
     position: absolute;
     text-align: right;
@@ -61,18 +87,18 @@ div.banner {
 
 }
 
-.startpagelogo p a {
+.startpage-logo p a {
     font-size: 18px;
 }
 
-.startpagelogo a:hover {
+.startpage-logo a:hover {
     text-decoration: none;
     color: rgba(48,191,253,1);
     cursor: pointer;
     transition: all 0.5s;
 }
 
-.startpagelogo:hover p
+.startpage-logo:hover p
 {
     color: orange;
     background-color: rgba(182,158,137,0.55);
@@ -81,12 +107,17 @@ div.banner {
 }
 
 
-.startpagelinks {
+.startpage-links {
     float: right;
     color: white;
 }
 
-.startpagelinks a {
+.startpage-links a {
+    color: white;
+}
+
+.startpage-controls {
+    float: right;
     color: white;
 }
 
