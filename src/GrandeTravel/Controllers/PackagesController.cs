@@ -22,6 +22,7 @@ namespace GrandeTravel.Controllers
         private IProviderRepository _providerRepo;
         private IFeedbackRepository _feedbackRepo;
         private IBookingRepository _bookingRepo;
+        private IEmailService _emailService;
 
         private UserManager<ApplicationUser> _userManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
@@ -35,13 +36,14 @@ namespace GrandeTravel.Controllers
         */
 
         // SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo
-        public PackagesController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo, IBookingRepository bookingRepo)
+        public PackagesController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo, IBookingRepository bookingRepo)
         {
             _packageRepo = packageRepo;
             _customerRepo = customerRepo;
             _providerRepo = providerRepo;
             _feedbackRepo = feedbackRepo;
             _bookingRepo = bookingRepo;
+            _emailService = emailService;
             _userManagerService = userManagerService;
             _roleManagerService = roleManagerService;
 
@@ -136,26 +138,22 @@ namespace GrandeTravel.Controllers
 
                 // ----------- You can only filter Active Packages - only customer can ------- //
 
-                string location = vm.Location.ToLower();
-                string minPrice = vm.MinPrice;
-                string maxPrice = vm.MaxPrice;
-
                 IEnumerable<Package> packages = new List<Package>();
                 packages = _packageRepo.Query(p => p.IsActive == true);
 
                 //vm.Packages = _packageRepo.GetAll();
 
-                if (location != null)
+                if (vm.Location != null)
                 {
-                    packages = packages.Where(p => p.Location.ToLower().Contains(location));
+                    packages = packages.Where(p => p.Location.ToLower().Contains(vm.Location.ToLower()));
                 }
-                if (minPrice != null)
+                if (vm.MinPrice != null)
                 {
-                    packages = packages.Where(p => p.Price >= Double.Parse(minPrice));
+                    packages = packages.Where(p => p.Price >= Double.Parse(vm.MinPrice));
                 }
-                if (maxPrice != null)
+                if (vm.MaxPrice != null)
                 {
-                    packages = packages.Where(p => p.Price <= Double.Parse(maxPrice));
+                    packages = packages.Where(p => p.Price <= Double.Parse(vm.MaxPrice));
                 }
 
                 // -------- Packages gathered -> collect Ratings and Feedbacks ----------
@@ -182,7 +180,7 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
-        [Authorize (Roles = "Provider")]
+        [Authorize(Roles = "Provider")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -408,7 +406,7 @@ namespace GrandeTravel.Controllers
             return View();
         }
 
-        [Authorize (Roles = "Customer")]
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public IActionResult Book(int id)
         {
@@ -459,6 +457,13 @@ namespace GrandeTravel.Controllers
 
                     _bookingRepo.Create(actualBooking);
 
+                    string emailContent = "Dear " + currentCustomer.FirstName + ",\n\nThank you for your order with Grande Travel.\n" +
+                                         "Please don't hesitate to check your booking details here:\n" +
+                                         "http://localhost:5000/Packages/BookedPackages [Login required]\n\n" +
+                                         "Kind Regards,\nGrande Travel";
+
+                    await _emailService.SendEmailAsync(currentUser.Email, "Grande Travel - Do not reply", emailContent);
+
                     return RedirectToAction("BookedPackages", "Packages");
                 }
                 return View(vm);
@@ -480,6 +485,46 @@ namespace GrandeTravel.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Customer")]
+        [HttpGet]
+        public IActionResult PayPackage(int id)
+        {
+            Booking currentBooking = _bookingRepo.GetSingle(b => b.BookingId == id);
+            Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == currentBooking.PackageId);
+            Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
+            //ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+            //Customer currentCustomer = _customerRepo.GetSingle(c => c.UserId == currentUser.Id);
 
+            PayPackageViewModel vm = new PayPackageViewModel
+            {
+                BookingId = id,
+                CompanyName = currentProvider.DisplayName,
+                PackageName = currentPackage.Name,
+                DateFor = currentBooking.DateFor,
+                NumberOfPeople = currentBooking.NumberOfPeople,
+                TotalPrice = currentBooking.NumberOfPeople * currentPackage.Price,
+                PaymentType = 1
+            };
+
+            return View(vm);
+        }
+
+        [Authorize(Roles = "Customer")]
+        [HttpPost]
+        public IActionResult PayPackage(PayPackageViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                Booking currentBooking = _bookingRepo.GetSingle(b => b.BookingId == vm.BookingId);
+
+                currentBooking.IsPaid = true;
+
+                _bookingRepo.Update(currentBooking);
+
+                return RedirectToAction("BookedPackages", "Packages");
+
+            }
+            return View(vm);
+        }
     }
 }

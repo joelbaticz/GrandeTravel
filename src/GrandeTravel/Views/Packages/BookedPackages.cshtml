@@ -38,7 +38,7 @@
                 else
                 {
                     @*<td>@item.IsPaid</td>*@
-                    <td><button style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</button></td>
+                    <td><a asp-controller="Packages" asp-action="PayPackage" asp-route-id="@item.BookingId" style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</a></td>
                 }
 
                 

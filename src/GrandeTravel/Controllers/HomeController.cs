@@ -133,9 +133,14 @@ namespace GrandeTravel.Controllers
 
                 //string result = await _emailService.SendEmailAsync("joel.baticz@gmail.com", "subjtest", "test");
 
-                EmailService es = new EmailService();
+                string emailContent = "Dear " + vm.Name + ",\n\nThank you for contacting Grande Travel.\n" +
+                                         "We will do our best to come back to you as soon as possible.\n\n" +
+                                         "Kind Regards,\nGrande Travel";
 
-                await es.SendEmailAsync("joel.baticz@gmail.com", "subjtest", "test");
+                //EmailService es = new EmailService();
+                //await es.SendEmailAsync(vm.Email, "Grande Travel - Do not reply", contactResponse);
+
+                await _emailService.SendEmailAsync(vm.Email, "Grande Travel - Do not reply", emailContent);
 
 
                 //return Content(result);
