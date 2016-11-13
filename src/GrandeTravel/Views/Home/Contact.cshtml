@@ -6,7 +6,7 @@
 <form asp-controller="Home" asp-action="Contact" method="post" role="form">
     <div class="form-group">
         <label asp-for="Name">Name:</label>
-        <input type="text" class="form-control" asp-for="Name" placeholder="your name">
+        <input type="text" class="form-control" asp-for="Name" placeholder="your name" autofocus>
         <span asp-validation-for="Name"></span>
     </div>
     <div class="form-group">

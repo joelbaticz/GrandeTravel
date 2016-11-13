@@ -85,7 +85,7 @@
                                 <span class="input-group-addon">Destination:</span>
                                 @*<input asp-for="Destination" class="form-control" type="text" placeholder="your destination" />*@
 
-                                <input style="border: none;" asp-for="Destination" type="text" autocomplete="off" class="form-control" placeholder="Search for a location" ng-model="selectedLocation" uib-typeahead="location for location in locationData | filter:$viewValue | limitTo:5">
+                                <input style="border: none;" asp-for="Destination" type="text" autocomplete="off" class="form-control" placeholder="Search for a location" ng-model="selectedLocation" uib-typeahead="location for location in locationData | filter:$viewValue | limitTo:5" autofocus>
                             </div>
                         </div>
                     </div>

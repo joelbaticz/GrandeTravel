@@ -448,10 +448,12 @@ namespace GrandeTravel.Controllers
                         CustomerId = currentCustomer.CustomerId,
                         PackageId = currentPackage.PackageId,
                         DateMade = DateTime.Now,
+                        CompanyName = currentProvider.DisplayName,
+                        PackageName = currentPackage.Name,
                         DateFor = vm.DateFor,
                         NumberOfPeople = vm.NumberOfPeople,
                         SpecialRequirements = vm.SpecialRequirements,
-                        Price = currentPackage.Price * vm.NumberOfPeople,
+                        Price = currentPackage.Price,
                         IsPaid = false
                     };
 

@@ -412,6 +412,27 @@ a.btn {
     border: 1px solid #bfa45b;
 }
 
+.input-group {
+    border-radius: 15px;
+    border: 1px solid white;
+}
+
+.input-group input {
+    border: none;
+}
+
+.input-group .input-group-addon {
+    border: none;
+    /*background-color: rgba(42,128,137,0.5);*/
+    background: none;
+    color: white;
+    border-radius: 15px;
+}
+
+.input-group span {
+    background: none;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   font-style: italic;
 }
@@ -1109,10 +1130,13 @@ table {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     color: #024457;
     padding: 5px;
+    width: 100%;
+    
 }
 
 th {
-  width: 5%;
+  min-width: 75px;
+  max-width: 10%;
   font-weight: lighter;
   text-shadow: 1px 1px 0 #38678f ;
   color: white;
@@ -1134,6 +1158,7 @@ td {
   transition: all 0.2s;
   border: none;
   color: #023447;
+  color: #b0ffff;
   /*box-shadow: inset 0px 1px 2px #568ebd;*/
 
 }

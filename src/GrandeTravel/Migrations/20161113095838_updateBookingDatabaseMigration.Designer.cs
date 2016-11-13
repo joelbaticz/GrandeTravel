@@ -8,9 +8,10 @@ using GrandeTravel.Services;
 namespace GrandeTravel.Migrations
 {
     [DbContext(typeof(DbContextService))]
-    partial class DBContextServiceModelSnapshot : ModelSnapshot
+    [Migration("20161113095838_updateBookingDatabaseMigration")]
+    partial class updateBookingDatabaseMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -70,8 +71,6 @@ namespace GrandeTravel.Migrations
                     b.Property<int>("BookingId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CompanyName");
-
                     b.Property<int>("CustomerId");
 
                     b.Property<DateTime>("DateFor");
@@ -83,8 +82,6 @@ namespace GrandeTravel.Migrations
                     b.Property<int>("NumberOfPeople");
 
                     b.Property<int>("PackageId");
-
-                    b.Property<string>("PackageName");
 
                     b.Property<double>("Price");
 

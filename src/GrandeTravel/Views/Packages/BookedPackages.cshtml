@@ -1,21 +1,22 @@
 ﻿@model GrandeTravel.ViewModels.DisplayAllBookingsViewModel
 <h2>Booked Packages</h2>
 
-<table>
-  
+<div ng-app="priceApp" ng-controller="priceCtrl">
+
+    @*
+    <table>
         <tr>
             <th>#</th>
-            <th>Date Made</th>
-            <th>Company Name</th>
-            <th>Package Name</th>
-            <th>Date For</th>
+            <th>Made On</th>
+            <th>Company</th>
+            <th>Package</th>
+            <th>Booked For</th>
             <th># People</th>
+            <th>Price / Person</th>
+            <th>Total</th>
             <th>Comments</th>
-            <th>Price</th>
             <th>Paid</th>
         </tr>
- 
-    
 
         @for (int i = 0; i < Model.BookedPackages.Count(); i++)
         {
@@ -23,12 +24,14 @@
             <tr>
                 <th scope="row">@(i + 1)</th>
                 <td>@item.DateMade.ToString("yyyy-MM-dd HH:mm")</td>
-                <td>-</td>
-                <td>-</td>
+                <td>@item.CompanyName</td>
+                <td>@item.PackageName</td>
                 <td>@item.DateFor.ToString("yyyy-MM-dd")</td>
-                <td><input type="text" value="@item.NumberOfPeople" /></td>
+                <td><input style="width: 75px;" type="text" asp-for="@item.NumberOfPeople" disabled /></td>
+                <td style="text-align: center;"><p>$@item.Price</p></td>
+                <td style="text-align: center;">$@(item.Price * item.NumberOfPeople)</td>
+                <td style="text-align: center;">$</td>
                 <td>@item.SpecialRequirements</td>
-                <td>$@item.Price</td>
 
                 @if (item.IsPaid)
                 {
@@ -37,18 +40,99 @@
                 }
                 else
                 {
-                    @*<td>@item.IsPaid</td>*@
                     <td><a asp-controller="Packages" asp-action="PayPackage" asp-route-id="@item.BookingId" style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</a></td>
                 }
-
-                
-
-
-
-
-
-
             </tr>
         }
+    </table>
+    *@
 
-</table>
+    <table>
+
+        <tr>
+            <th>#</th>
+            <th>Made On</th>
+            <th>Company</th>
+            <th>Package</th>
+            <th>Booked For</th>
+            <th># People</th>
+            <th>Price / Person</th>
+            <th>Total</th>
+            <th>Comments</th>
+            <th>Paid</th>
+        </tr>
+
+
+        <tr ng-repeat="booking in bookingData">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{booking.dateMade | date:'yyyy-MM-dd HH:mm'}}</td>
+                <td>{{booking.companyName}}</td>
+                <td>{{booking.packageName}}</td>
+                <td>{{booking.dateFor | date:'yyyy-MM-dd'}}</td>
+
+                <td ng-hide="booking.isPaid">
+                    <input style="width: 75px;" type="text" ng-model="booking.numberOfPeople" />
+                </td>
+                <td ng-show="booking.isPaid">
+                   <p>{{booking.numberOfPeople}}</p>
+                </td>
+                <td style="text-align: center;">${{booking.price}}</td>
+                <td style="text-align: center;">${{booking.price * booking.numberOfPeople}}</td>
+                <td>{{booking.specialRequirements}}</td>
+
+                <td ng-show="booking.isPaid">
+                    <span style="color:white; text-align: center; width: 100%;" class="glyphicon glyphicon-ok"></span>
+                </td>
+               <td ng-hide="booking.isPaid">
+                   @*<a asp-controller="Packages" asp-action="PayPackage" asp-route-id="{{booking.bookingId}}" style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</a>*@
+                   <a href="/Packages/PayPackage/{{booking.bookingId}}" style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</a>
+                </td>
+
+
+                @*
+                @if (item.IsPaid)
+                {
+                    /*<td><span style="color:white; text-align: center; width: 100%;" class="glyphicon glyphicon-ok"><p> Paid</p></span></td>*/
+                    <td><span style="color:white; text-align: center; width: 100%;" class="glyphicon glyphicon-ok"></span></td>
+                }
+                else
+                {
+                    <td><a asp-controller="Packages" asp-action="PayPackage" asp-route-id="@item.BookingId" style="width: 100%; height: 25px; padding: 2px;" class="btn btn-secondary">Pay</a></td>
+                }
+                    *@
+
+            </tr>
+            
+
+
+    </table>
+        
+    @*
+    <div ng-repeat="booking in bookingData">
+        <p>{{$index}}</p>
+        <p>{{booking.dateMade.getFullYear()}}</p>
+        <p>{{booking.dateFor}}</p>
+        <p>{{booking.packageName}}</p>
+    </div>
+    
+    <p>{{stuff}}</p>
+        *@
+
+</div>
+
+<script>
+    'use strict';
+
+    angular
+        .module('priceApp', [])
+        .controller('priceCtrl', function ($scope) {
+
+         
+            $scope.bookingData = @Html.Raw(Json.Serialize(Model.BookedPackages));
+            $scope.stuff= "Angular worxxxx";
+           
+
+
+            });
+
+</script>

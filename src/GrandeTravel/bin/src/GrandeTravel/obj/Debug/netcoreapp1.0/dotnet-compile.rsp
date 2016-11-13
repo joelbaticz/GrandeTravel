@@ -1,5 +1,5 @@
---temp-output:E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\obj\Debug\netcoreapp1.0\
---out:E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\bin\Debug\netcoreapp1.0\GrandeTravel.dll
+--temp-output:E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\obj\Debug\netcoreapp1.0\
+--out:E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\bin\Debug\netcoreapp1.0\GrandeTravel.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -13,6 +13,7 @@
 --version:1.0.0.0
 --informational-version:1.0.0
 --target-framework:.NETCoreApp,Version=v1.0
+--reference:C:\Users\CiccMicc\.nuget\packages\MailKit\1.10.0\lib\netstandard1.3\MailKit.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.AspNetCore.Authentication\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authentication.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.AspNetCore.Authentication.Cookies\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Authentication.Cookies.dll
@@ -98,6 +99,7 @@
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.VisualBasic\10.0.1\ref\netstandard1.1\Microsoft.VisualBasic.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.Win32.Primitives\4.0.1\ref\netstandard1.3\Microsoft.Win32.Primitives.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Microsoft.Win32.Registry\4.0.0\ref\netstandard1.3\Microsoft.Win32.Registry.dll
+--reference:C:\Users\CiccMicc\.nuget\packages\MimeKit\1.10.0\lib\netstandard1.3\MimeKit.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Newtonsoft.Json\9.0.1\lib\netstandard1.0\Newtonsoft.Json.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\NuGet.Common\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Common.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\NuGet.Configuration\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Configuration.dll
@@ -113,6 +115,7 @@
 --reference:C:\Users\CiccMicc\.nuget\packages\NuGet.Repositories\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.Repositories.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\NuGet.RuntimeModel\3.5.0-beta2-1484\lib\netstandard1.3\NuGet.RuntimeModel.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\NuGet.Versioning\3.5.0-beta2-1484\lib\netstandard1.0\NuGet.Versioning.dll
+--reference:C:\Users\CiccMicc\.nuget\packages\Portable.BouncyCastle\1.8.1.1\lib\netstandard1.3\crypto.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\Remotion.Linq\2.1.1\lib\netstandard1.0\Remotion.Linq.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.AppContext\4.1.0\ref\netstandard1.6\System.AppContext.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Buffers\4.0.0\lib\netstandard1.1\System.Buffers.dll
@@ -153,6 +156,7 @@
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Linq.Queryable\4.0.1\ref\netstandard1.0\System.Linq.Queryable.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Net.Http\4.1.0\ref\netstandard1.3\System.Net.Http.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Net.NameResolution\4.0.0\ref\netstandard1.3\System.Net.NameResolution.dll
+--reference:C:\Users\CiccMicc\.nuget\packages\System.Net.NetworkInformation\4.1.0\ref\netstandard1.3\System.Net.NetworkInformation.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Net.Primitives\4.0.11\ref\netstandard1.3\System.Net.Primitives.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Net.Requests\4.0.11\ref\netstandard1.3\System.Net.Requests.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Net.Security\4.0.0\ref\netstandard1.3\System.Net.Security.dll
@@ -185,6 +189,7 @@
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Security.Principal\4.0.1\ref\netstandard1.0\System.Security.Principal.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Security.Principal.Windows\4.0.0\ref\netstandard1.3\System.Security.Principal.Windows.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Text.Encoding\4.0.11\ref\netstandard1.3\System.Text.Encoding.dll
+--reference:C:\Users\CiccMicc\.nuget\packages\System.Text.Encoding.CodePages\4.0.1\ref\netstandard1.3\System.Text.Encoding.CodePages.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Text.Encoding.Extensions\4.0.11\ref\netstandard1.3\System.Text.Encoding.Extensions.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Text.Encodings.Web\4.0.0\lib\netstandard1.0\System.Text.Encodings.Web.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Text.RegularExpressions\4.1.0\ref\netstandard1.6\System.Text.RegularExpressions.dll
@@ -198,75 +203,90 @@
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\CiccMicc\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\obj\Debug\netcoreapp1.0\GrandeTraveldotnet-compile.deps.json",GrandeTravel.deps.json
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Program.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Startup.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Controllers\AccountController.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Controllers\HomeController.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Controllers\PackagesController.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020043514_initDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020043514_initDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020050351_updatePackageDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020050351_updatePackageDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020091849_updateProviderDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020091849_updateProviderDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020091926_updateProviderDatabaseMigration2.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020091926_updateProviderDatabaseMigration2.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020092959_addingIdentityDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020092959_addingIdentityDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020093609_addingIdentityDatabaseMigration2.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161020093609_addingIdentityDatabaseMigration2.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021002656_updateProviderDatabaseMigration3.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021002656_updateProviderDatabaseMigration3.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021005545_updateProviderDatabaseMigration4.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021005545_updateProviderDatabaseMigration4.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021011952_updateProviderDatabaseMigration5.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021011952_updateProviderDatabaseMigration5.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021033627_addingCustomerDatabasaMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021033627_addingCustomerDatabasaMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021034428_addingCustomerDatabasaMigration2.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161021034428_addingCustomerDatabasaMigration2.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031062703_addingFeedbackDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031062703_addingFeedbackDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031115934_updateFeedbackDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031115934_updateFeedbackDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031121403_updateFeedbackDatabaseMigration2.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161031121403_updateFeedbackDatabaseMigration2.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161102035405_updatePackageDatabaseMigration2.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161102035405_updatePackageDatabaseMigration2.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161103055552_addingBookingDatabaseMigration.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\20161103055552_addingBookingDatabaseMigration.Designer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Migrations\DBContextServiceModelSnapshot.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\ApplicationUser.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\Booking.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\Customer.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\Feedback.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\Package.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\PackageWithRating.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Models\Provider.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\BaseRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\CustomerRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\DBContextService.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\FeedbackRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\ICustomerRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\IFeedbackRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\IPackageRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\IProviderRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\IRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\PackageRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\Services\ProviderRepository.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\ContactViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\CreatePackageViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\DeletePackageViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\DisplayAllPackagesViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\EditCustomerViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\EditPackageViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\EditProviderViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\HomeIndexViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\LeaveFeedbackViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\LoginViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\PackageDetailsViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\PackageListViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\RegisterCustomerViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\RegisterProviderViewModel.cs
-E:\TAFE\Diploma Project\GrandeTravel\src\GrandeTravel\ViewModels\RegisterViewModel.cs
+--resource:"E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\bin\src\GrandeTravel\obj\Debug\netcoreapp1.0\GrandeTraveldotnet-compile.deps.json",GrandeTravel.deps.json
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Program.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Startup.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Controllers\AccountController.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Controllers\ApiController.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Controllers\HomeController.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Controllers\PackagesController.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020043514_initDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020043514_initDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020050351_updatePackageDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020050351_updatePackageDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020091849_updateProviderDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020091849_updateProviderDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020091926_updateProviderDatabaseMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020091926_updateProviderDatabaseMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020092959_addingIdentityDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020092959_addingIdentityDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020093609_addingIdentityDatabaseMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161020093609_addingIdentityDatabaseMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021002656_updateProviderDatabaseMigration3.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021002656_updateProviderDatabaseMigration3.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021005545_updateProviderDatabaseMigration4.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021005545_updateProviderDatabaseMigration4.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021011952_updateProviderDatabaseMigration5.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021011952_updateProviderDatabaseMigration5.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021033627_addingCustomerDatabasaMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021033627_addingCustomerDatabasaMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021034428_addingCustomerDatabasaMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161021034428_addingCustomerDatabasaMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031062703_addingFeedbackDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031062703_addingFeedbackDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031115934_updateFeedbackDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031115934_updateFeedbackDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031121403_updateFeedbackDatabaseMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161031121403_updateFeedbackDatabaseMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161102035405_updatePackageDatabaseMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161102035405_updatePackageDatabaseMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161103055552_addingBookingDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161103055552_addingBookingDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161113095838_updateBookingDatabaseMigration.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161113095838_updateBookingDatabaseMigration.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161113100047_updateBookingDatabaseMigration2.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\20161113100047_updateBookingDatabaseMigration2.Designer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Migrations\DBContextServiceModelSnapshot.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\ApplicationUser.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Booking.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Customer.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\EmailSettings.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Feedback.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Package.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\PackageWithRating.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\PaymentOptionsEnum.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Provider.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\BaseRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\BookingRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\CustomerRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\DBContextService.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\EmailService.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\FeedbackRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IBookingRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\ICustomerRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IEmailService.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IFeedbackRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IPackageRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IProviderRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\PackageRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\ProviderRepository.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\AccessDeniedViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\BookPackageViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\ContactViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\CreatePackageViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\DeletePackageViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\DisplayAllBookingsViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\DisplayAllPackagesViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\EditCustomerViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\EditPackageViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\EditProviderViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\HomeIndexViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\LeaveFeedbackViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\LoginViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\PackageDetailsViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\PackageListViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\PayPackageViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\RegisterCustomerViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\RegisterProviderViewModel.cs
+E:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\RegisterViewModel.cs

@@ -10,6 +10,8 @@ namespace GrandeTravel.Models
         public int BookingId { get; set; }
         public int PackageId { get; set; }
         public DateTime DateMade { get; set; }
+        public string CompanyName { get; set; }
+        public string PackageName { get; set; }
         public DateTime DateFor { get; set; }
         public int NumberOfPeople { get; set; }
         public string SpecialRequirements { get; set; }
