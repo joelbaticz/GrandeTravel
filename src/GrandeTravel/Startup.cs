@@ -52,6 +52,7 @@ namespace GrandeTravel
             services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ISmsService, SmsService>();
 
         }
 

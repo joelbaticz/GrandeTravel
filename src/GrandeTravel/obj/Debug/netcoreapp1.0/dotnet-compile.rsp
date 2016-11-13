@@ -256,6 +256,7 @@ e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Package.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\PackageWithRating.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\PaymentOptionsEnum.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\Provider.cs
+e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Models\SmsSettings.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\BaseRepository.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\BookingRepository.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\CustomerRepository.cs
@@ -269,8 +270,10 @@ e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IFeedbackRepositor
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IPackageRepository.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IProviderRepository.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\IRepository.cs
+e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\ISmsService.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\PackageRepository.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\ProviderRepository.cs
+e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\Services\SmsService.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\AccessDeniedViewModel.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\BookPackageViewModel.cs
 e:\TAFE\DiplomaProject\GrandeTravel\src\GrandeTravel\ViewModels\ContactViewModel.cs

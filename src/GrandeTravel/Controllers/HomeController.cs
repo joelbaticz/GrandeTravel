@@ -28,8 +28,9 @@ namespace GrandeTravel.Controllers
         private IPackageRepository _packageRepo;
         private IFeedbackRepository _feedbackRepo;
         private IEmailService _emailService;
+        private ISmsService _smsService;
 
-        public HomeController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, IProviderRepository providerRepo, ICustomerRepository customerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
+        public HomeController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, ISmsService smsService, IProviderRepository providerRepo, ICustomerRepository customerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo)
         {
             _userManagerService = userManagerService;
             _roleManagerService = roleManagerService;
@@ -38,6 +39,7 @@ namespace GrandeTravel.Controllers
             _packageRepo = packageRepo;
             _feedbackRepo = feedbackRepo;
             _emailService = emailService;
+            _smsService = smsService;
         }
 
         [HttpGet]
@@ -142,6 +144,11 @@ namespace GrandeTravel.Controllers
 
                 await _emailService.SendEmailAsync(vm.Email, "Grande Travel - Do not reply", emailContent);
 
+
+                SmsService smsSer = new SmsService();
+
+                await smsSer.SendSmsAsync("+61451054465", "Hi Joel!");
+                                                 
 
                 //return Content(result);
 
