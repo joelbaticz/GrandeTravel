@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="62a5bfa1-26ec-4393-8056-5e3a8a394344" name="CiccMicc@N4CR 2016-11-14 14:45:40" runUser="n4cr\CiccMicc" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="fbfffd6b-bc2f-4e71-8b0d-ca75594016fa">
+    <Description>These are default test settings for a local test run.</Description>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="CiccMicc_N4CR 2016-11-14 14_45_40" />
+    <Properties>
+      <Property name="TestSettingsUIType" value="LoadTest" />
+    </Properties>
+  </TestSettings>
+  <Times creation="2016-11-14T14:45:40.0138850+11:00" queuing="2016-11-14T14:45:40.2749004+11:00" start="2016-11-14T14:45:40.3989120+11:00" finish="2016-11-14T14:45:54.8067324+11:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <WebTest name="GrandeTravel-ContentTest" storage="e:\tafe\diplomaproject\grandetravel\grandetravelwebapptest\grandetravel-contenttest.webtest" id="b67a9060-1d5c-494d-b901-7cc015c8d8cb" persistedWebTest="77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/Pg0KPFdlYlRlc3QgTmFtZT0iR3JhbmRlVHJhdmVsLUNvbnRlbnRUZXN0IiBJZD0iYjY3YTkwNjAtMWQ1Yy00OTRkLWI5MDEtN2NjMDE1YzhkOGNiIiBPd25lcj0iIiBQcmlvcml0eT0iMjE0NzQ4MzY0NyIgRW5hYmxlZD0iVHJ1ZSIgQ3NzUHJvamVjdFN0cnVjdHVyZT0iIiBDc3NJdGVyYXRpb249IiIgVGltZW91dD0iMCIgV29ya0l0ZW1JZHM9IiIgeG1sbnM9Imh0dHA6Ly9taWNyb3NvZnQuY29tL3NjaGVtYXMvVmlzdWFsU3R1ZGlvL1RlYW1UZXN0LzIwMTAiIERlc2NyaXB0aW9uPSIiIENyZWRlbnRpYWxVc2VyTmFtZT0iIiBDcmVkZW50aWFsUGFzc3dvcmQ9IiIgUHJlQXV0aGVudGljYXRlPSJUcnVlIiBQcm94eT0iZGVmYXVsdCIgU3RvcE9uRXJyb3I9IkZhbHNlIiBSZWNvcmRlZFJlc3VsdEZpbGU9IkdyYW5kZVRyYXZlbC1Db250ZW50VGVzdC5lOGY4ZTFiYS1lZjUzLTQ3MGQtOWVhOS1jOGRlMjBmZTAyZDEucmVjLndlYnRlc3RyZXN1bHQiIFJlc3VsdHNMb2NhbGU9IiI+DQogIDxJdGVtcz4NCiAgICA8UmVxdWVzdCBNZXRob2Q9IkdFVCIgR3VpZD0iNzdlYzBiOWMtMmI0ZC00ZTAzLTlmZmMtZDBlYWMwYTlmNTEzIiBWZXJzaW9uPSIxLjEiIFVybD0iaHR0cDovL2xvY2FsaG9zdDo0NTAyL1BhY2thZ2VzIiBUaGlua1RpbWU9IjAiIFRpbWVvdXQ9IjMwMCIgUGFyc2VEZXBlbmRlbnRSZXF1ZXN0cz0iVHJ1ZSIgRm9sbG93UmVkaXJlY3RzPSJUcnVlIiBSZWNvcmRSZXN1bHQ9IlRydWUiIENhY2hlPSJGYWxzZSIgUmVzcG9uc2VUaW1lR29hbD0iMCIgRW5jb2Rpbmc9InV0Zi04IiBFeHBlY3RlZEh0dHBTdGF0dXNDb2RlPSIwIiBFeHBlY3RlZFJlc3BvbnNlVXJsPSIiIFJlcG9ydGluZ05hbWU9IiIgSWdub3JlSHR0cFN0YXR1c0NvZGU9IkZhbHNlIj4NCiAgICAgIDxIZWFkZXJzPg0KICAgICAgICA8SGVhZGVyIE5hbWU9IlJlZmVyZXIiIFZhbHVlPSJodHRwOi8vbG9jYWxob3N0OjQ1MDIvSG9tZS9Db250YWN0IiAvPg0KICAgICAgPC9IZWFkZXJzPg0KICAgICAgPFZhbGlkYXRpb25SdWxlcz4NCiAgICAgICAgPFZhbGlkYXRpb25SdWxlIENsYXNzbmFtZT0iTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5UZXN0VG9vbHMuV2ViVGVzdGluZy5SdWxlcy5WYWxpZGF0aW9uUnVsZVJlcXVpcmVkVGFnLCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLlF1YWxpdHlUb29scy5XZWJUZXN0RnJhbWV3b3JrLCBWZXJzaW9uPTEwLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EiIERpc3BsYXlOYW1lPSJSZXF1aXJlZCBUYWciIERlc2NyaXB0aW9uPSJWZXJpZmllcyB0aGUgZXhpc3RlbmNlIG9mIHNwZWNpZmllZCBIVE1MIHRhZyBpbiB0aGUgcmVzcG9uc2UuIiBMZXZlbD0iSGlnaCIgRXhlY3R1aW9uT3JkZXI9IkJlZm9yZURlcGVuZGVudHMiPg0KICAgICAgICAgIDxSdWxlUGFyYW1ldGVycz4NCiAgICAgICAgICAgIDxSdWxlUGFyYW1ldGVyIE5hbWU9IlJlcXVpcmVkVGFnTmFtZSIgVmFsdWU9ImgyIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iTWluT2NjdXJyZW5jZXMiIFZhbHVlPSIwIiAvPg0KICAgICAgICAgIDwvUnVsZVBhcmFtZXRlcnM+DQogICAgICAgIDwvVmFsaWRhdGlvblJ1bGU+DQogICAgICAgIDxWYWxpZGF0aW9uUnVsZSBDbGFzc25hbWU9Ik1pY3Jvc29mdC5WaXN1YWxTdHVkaW8uVGVzdFRvb2xzLldlYlRlc3RpbmcuUnVsZXMuVmFsaWRhdGlvblJ1bGVGaW5kVGV4dCwgTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5RdWFsaXR5VG9vbHMuV2ViVGVzdEZyYW1ld29yaywgVmVyc2lvbj0xMC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNmNWY3ZjExZDUwYTNhIiBEaXNwbGF5TmFtZT0iRmluZCBUZXh0IiBEZXNjcmlwdGlvbj0iVmVyaWZpZXMgdGhlIGV4aXN0ZW5jZSBvZiB0aGUgc3BlY2lmaWVkIHRleHQgaW4gdGhlIHJlc3BvbnNlLiIgTGV2ZWw9IkhpZ2giIEV4ZWN0dWlvbk9yZGVyPSJCZWZvcmVEZXBlbmRlbnRzIj4NCiAgICAgICAgICA8UnVsZVBhcmFtZXRlcnM+DQogICAgICAgICAgICA8UnVsZVBhcmFtZXRlciBOYW1lPSJGaW5kVGV4dCIgVmFsdWU9IlBhY2thZ2VzIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iSWdub3JlQ2FzZSIgVmFsdWU9IkZhbHNlIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iVXNlUmVndWxhckV4cHJlc3Npb24iIFZhbHVlPSJGYWxzZSIgLz4NCiAgICAgICAgICAgIDxSdWxlUGFyYW1ldGVyIE5hbWU9IlBhc3NJZlRleHRGb3VuZCIgVmFsdWU9IlRydWUiIC8+DQogICAgICAgICAgPC9SdWxlUGFyYW1ldGVycz4NCiAgICAgICAgPC9WYWxpZGF0aW9uUnVsZT4NCiAgICAgICAgPFZhbGlkYXRpb25SdWxlIENsYXNzbmFtZT0iTWljcm9zb2Z0LlZpc3VhbFN0dWRpby5UZXN0VG9vbHMuV2ViVGVzdGluZy5SdWxlcy5WYWxpZGF0ZUh0bWxUYWdJbm5lclRleHQsIE1pY3Jvc29mdC5WaXN1YWxTdHVkaW8uUXVhbGl0eVRvb2xzLldlYlRlc3RGcmFtZXdvcmssIFZlcnNpb249MTAuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYSIgRGlzcGxheU5hbWU9IlRhZyBJbm5lciBUZXh0IiBEZXNjcmlwdGlvbj0iVmFsaWRhdGVzIHRoYXQgdGhlIHNwZWNpZmllZCBleHBlY3RlZCBpbm5lciB0ZXh0IGV4aXN0cyB3aXRoaW4gdGhlIHNwZWNpZmllZCBIVE1MIHRhZy4iIExldmVsPSJIaWdoIiBFeGVjdHVpb25PcmRlcj0iQmVmb3JlRGVwZW5kZW50cyI+DQogICAgICAgICAgPFJ1bGVQYXJhbWV0ZXJzPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iVGFnTmFtZSIgVmFsdWU9ImgyIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iQXR0cmlidXRlTmFtZSIgVmFsdWU9IiIgLz4NCiAgICAgICAgICAgIDxSdWxlUGFyYW1ldGVyIE5hbWU9IkF0dHJpYnV0ZVZhbHVlIiBWYWx1ZT0iIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iRXhwZWN0ZWRJbm5lclRleHQiIFZhbHVlPSJQYWNrYWdlcyIgLz4NCiAgICAgICAgICAgIDxSdWxlUGFyYW1ldGVyIE5hbWU9IlJlbW92ZUlubmVyVGFncyIgVmFsdWU9IlRydWUiIC8+DQogICAgICAgICAgICA8UnVsZVBhcmFtZXRlciBOYW1lPSJIYXNDbG9zaW5nVGFncyIgVmFsdWU9IlRydWUiIC8+DQogICAgICAgICAgICA8UnVsZVBhcmFtZXRlciBOYW1lPSJDb2xsYXBzZVdoaXRlU3BhY2UiIFZhbHVlPSJUcnVlIiAvPg0KICAgICAgICAgICAgPFJ1bGVQYXJhbWV0ZXIgTmFtZT0iSW5kZXgiIFZhbHVlPSItMSIgLz4NCiAgICAgICAgICAgIDxSdWxlUGFyYW1ldGVyIE5hbWU9Iklnbm9yZUNhc2UiIFZhbHVlPSJUcnVlIiAvPg0KICAgICAgICAgIDwvUnVsZVBhcmFtZXRlcnM+DQogICAgICAgIDwvVmFsaWRhdGlvblJ1bGU+DQogICAgICA8L1ZhbGlkYXRpb25SdWxlcz4NCiAgICA8L1JlcXVlc3Q+DQogICAgPFJlcXVlc3QgTWV0aG9kPSJHRVQiIEd1aWQ9ImE0OWU1ZDE0LWFjNWEtNDljYi05OTNmLWJkMjAyMDFkMzI2MyIgVmVyc2lvbj0iMS4xIiBVcmw9Imh0dHA6Ly9sb2NhbGhvc3Q6NDUwMi9Ib21lL0NvbnRhY3QiIFRoaW5rVGltZT0iMCIgVGltZW91dD0iMzAwIiBQYXJzZURlcGVuZGVudFJlcXVlc3RzPSJUcnVlIiBGb2xsb3dSZWRpcmVjdHM9IlRydWUiIFJlY29yZFJlc3VsdD0iVHJ1ZSIgQ2FjaGU9IkZhbHNlIiBSZXNwb25zZVRpbWVHb2FsPSIwIiBFbmNvZGluZz0idXRmLTgiIEV4cGVjdGVkSHR0cFN0YXR1c0NvZGU9IjAiIEV4cGVjdGVkUmVzcG9uc2VVcmw9IiIgUmVwb3J0aW5nTmFtZT0iIiBJZ25vcmVIdHRwU3RhdHVzQ29kZT0iRmFsc2UiPg0KICAgICAgPEhlYWRlcnM+DQogICAgICAgIDxIZWFkZXIgTmFtZT0iUmVmZXJlciIgVmFsdWU9Imh0dHA6Ly9sb2NhbGhvc3Q6NDUwMi9Ib21lL0Fib3V0IiAvPg0KICAgICAgPC9IZWFkZXJzPg0KICAgIDwvUmVxdWVzdD4NCiAgICA8UmVxdWVzdCBNZXRob2Q9IkdFVCIgR3VpZD0iY2IxMzhhYWEtZGVjZC00NGQ2LTllODItODBjOTcxMDU3MTllIiBWZXJzaW9uPSIxLjEiIFVybD0iaHR0cDovL2xvY2FsaG9zdDo0NTAyL0hvbWUvQWJvdXQiIFRoaW5rVGltZT0iMCIgVGltZW91dD0iMzAwIiBQYXJzZURlcGVuZGVudFJlcXVlc3RzPSJUcnVlIiBGb2xsb3dSZWRpcmVjdHM9IlRydWUiIFJlY29yZFJlc3VsdD0iVHJ1ZSIgQ2FjaGU9IkZhbHNlIiBSZXNwb25zZVRpbWVHb2FsPSIwIiBFbmNvZGluZz0idXRmLTgiIEV4cGVjdGVkSHR0cFN0YXR1c0NvZGU9IjAiIEV4cGVjdGVkUmVzcG9uc2VVcmw9IiIgUmVwb3J0aW5nTmFtZT0iIiBJZ25vcmVIdHRwU3RhdHVzQ29kZT0iRmFsc2UiPg0KICAgICAgPEhlYWRlcnM+DQogICAgICAgIDxIZWFkZXIgTmFtZT0iUmVmZXJlciIgVmFsdWU9Imh0dHA6Ly9sb2NhbGhvc3Q6NDUwMi9BY2NvdW50L0xvZ2luIiAvPg0KICAgICAgPC9IZWFkZXJzPg0KICAgIDwvUmVxdWVzdD4NCiAgPC9JdGVtcz4NCiAgPFZhbGlkYXRpb25SdWxlcz4NCiAgICA8VmFsaWRhdGlvblJ1bGUgQ2xhc3NuYW1lPSJNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLlRlc3RUb29scy5XZWJUZXN0aW5nLlJ1bGVzLlZhbGlkYXRlUmVzcG9uc2VVcmwsIE1pY3Jvc29mdC5WaXN1YWxTdHVkaW8uUXVhbGl0eVRvb2xzLldlYlRlc3RGcmFtZXdvcmssIFZlcnNpb249MTAuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49YjAzZjVmN2YxMWQ1MGEzYSIgRGlzcGxheU5hbWU9IlJlc3BvbnNlIFVSTCIgRGVzY3JpcHRpb249IlZhbGlkYXRlcyB0aGF0IHRoZSByZXNwb25zZSBVUkwgYWZ0ZXIgcmVkaXJlY3RzIGFyZSBmb2xsb3dlZCBpcyB0aGUgc2FtZSBhcyB0aGUgcmVjb3JkZWQgcmVzcG9uc2UgVVJMLiAgUXVlcnlTdHJpbmcgcGFyYW1ldGVycyBhcmUgaWdub3JlZC4iIExldmVsPSJMb3ciIEV4ZWN0dWlvbk9yZGVyPSJCZWZvcmVEZXBlbmRlbnRzIiAvPg0KICAgIDxWYWxpZGF0aW9uUnVsZSBDbGFzc25hbWU9Ik1pY3Jvc29mdC5WaXN1YWxTdHVkaW8uVGVzdFRvb2xzLldlYlRlc3RpbmcuUnVsZXMuVmFsaWRhdGlvblJ1bGVSZXNwb25zZVRpbWVHb2FsLCBNaWNyb3NvZnQuVmlzdWFsU3R1ZGlvLlF1YWxpdHlUb29scy5XZWJUZXN0RnJhbWV3b3JrLCBWZXJzaW9uPTEwLjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EiIERpc3BsYXlOYW1lPSJSZXNwb25zZSBUaW1lIEdvYWwiIERlc2NyaXB0aW9uPSJWYWxpZGF0ZXMgdGhhdCB0aGUgcmVzcG9uc2UgdGltZSBmb3IgdGhlIHJlcXVlc3QgaXMgbGVzcyB0aGFuIG9yIGVxdWFsIHRvIHRoZSByZXNwb25zZSB0aW1lIGdvYWwgYXMgc3BlY2lmaWVkIG9uIHRoZSByZXF1ZXN0LiAgUmVzcG9uc2UgdGltZSBnb2FscyBvZiB6ZXJvIHdpbGwgYmUgaWdub3JlZC4iIExldmVsPSJMb3ciIEV4ZWN0dWlvbk9yZGVyPSJBZnRlckRlcGVuZGVudHMiPg0KICAgICAgPFJ1bGVQYXJhbWV0ZXJzPg0KICAgICAgICA8UnVsZVBhcmFtZXRlciBOYW1lPSJUb2xlcmFuY2UiIFZhbHVlPSIwIiAvPg0KICAgICAgPC9SdWxlUGFyYW1ldGVycz4NCiAgICA8L1ZhbGlkYXRpb25SdWxlPg0KICA8L1ZhbGlkYXRpb25SdWxlcz4NCjwvV2ViVGVzdD4=">
+      <Execution id="dfee9d4c-498e-4e77-9007-93c6e97c7469" />
+    </WebTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry isTransparent="false" testId="b67a9060-1d5c-494d-b901-7cc015c8d8cb" executionId="dfee9d4c-498e-4e77-9007-93c6e97c7469" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <WebTestResult executionId="dfee9d4c-498e-4e77-9007-93c6e97c7469" testId="b67a9060-1d5c-494d-b901-7cc015c8d8cb" testName="GrandeTravel-ContentTest" computerName="N4CR" duration="00:00:03.7571360" startTime="2016-11-14T14:45:40.4409095+11:00" endTime="2016-11-14T14:45:54.7907310+11:00" testType="4e7599fa-5ecb-43e9-a887-cd63cf72d207" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="dfee9d4c-498e-4e77-9007-93c6e97c7469">
+      <ResultFiles>
+        <ResultFile path="GrandeTravel-ContentTest.webtestResult" />
+      </ResultFiles>
+      <TestSettings name="Local" id="fbfffd6b-bc2f-4e71-8b0d-ca75594016fa">
+        <Description>These are default test settings for a local test run.</Description>
+        <Execution>
+          <TestTypeSpecific>
+            <WebTestRunConfiguration testTypeId="4e7599fa-5ecb-43e9-a887-cd63cf72d207">
+              <Browser name="Internet Explorer 9.0" MaxConnections="6">
+                <Headers>
+                  <Header name="User-Agent" value="Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)" />
+                  <Header name="Accept" value="*/*" />
+                  <Header name="Accept-Language" value="{{$IEAcceptLanguage}}" />
+                  <Header name="Accept-Encoding" value="GZIP" />
+                </Headers>
+              </Browser>
+            </WebTestRunConfiguration>
+          </TestTypeSpecific>
+          <AgentRule name="Execution Agents">
+          </AgentRule>
+        </Execution>
+        <Deployment runDeploymentRoot="CiccMicc_N4CR 2016-11-14 14_45_40" />
+        <Properties>
+          <Property name="TestSettingsUIType" value="LoadTest" />
+        </Properties>
+      </TestSettings>
+      <WebTestResultFilePath>CiccMicc_N4CR 2016-11-14 14_45_40\In\dfee9d4c-498e-4e77-9007-93c6e97c7469\GrandeTravel-ContentTest.webtestResult</WebTestResultFilePath>
+    </WebTestResult>
+  </Results>
+</TestRun>

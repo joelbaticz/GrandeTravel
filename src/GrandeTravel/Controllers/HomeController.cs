@@ -49,16 +49,19 @@ namespace GrandeTravel.Controllers
 
             List<PackageWithRating> packagesWithRating = new List<PackageWithRating>();
 
-
-
-            foreach (var item in allPackages)
+            if ((allPackages != null) && (allPackages.Count()>0))
             {
-                PackageWithRating packageWithRating = new PackageWithRating
+
+                foreach (var item in allPackages)
                 {
-                    Package = item,
-                    Rating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average()
-                };
-                packagesWithRating.Add(packageWithRating);
+                    PackageWithRating packageWithRating = new PackageWithRating
+                    {
+                        Package = item,
+                        Rating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average()
+                    };
+                    packagesWithRating.Add(packageWithRating);
+                }
+
             }
 
 
@@ -168,5 +171,46 @@ namespace GrandeTravel.Controllers
         {
             return View();
         }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> SetDefaults()
+        {
+            //----------=========CREATE ROLES===========-------------
+            IdentityRole providerRole = new IdentityRole
+            {
+                Id = "1",
+                Name = "Provider",
+                NormalizedName = "PROVIDER"
+            };
+
+            await _roleManagerService.CreateAsync(providerRole);
+
+            IdentityRole customerRole = new IdentityRole
+            {
+                Id = "1",
+                Name = "Customer",
+                NormalizedName = "CUSTROMER"
+            };
+
+            await _roleManagerService.CreateAsync(customerRole);
+
+
+            ApplicationUser provider1 = await _userManagerService.FindByNameAsync("provider1");
+
+            await _userManagerService.AddToRoleAsync(provider1, "Provider");
+
+
+
+            return Content("Roles inserted successfully.");
+
+        }
+
+
+
+
+
+
     }
 }

@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WebTest Name="GrandeTravel-ContentTest" Id="b67a9060-1d5c-494d-b901-7cc015c8d8cb" Owner="" Priority="2147483647" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="0" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="GrandeTravel-ContentTest.e8f8e1ba-ef53-470d-9ea9-c8de20fe02d1.rec.webtestresult" ResultsLocale="">
+  <Items>
+    <Request Method="GET" Guid="77ec0b9c-2b4d-4e03-9ffc-d0eac0a9f513" Version="1.1" Url="http://localhost:4502/Packages" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://localhost:4502/Home/Contact" />
+      </Headers>
+      <ValidationRules>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredTag, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Tag" Description="Verifies the existence of specified HTML tag in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="RequiredTagName" Value="h2" />
+            <RuleParameter Name="MinOccurrences" Value="0" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Find Text" Description="Verifies the existence of the specified text in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="FindText" Value="Packages" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="False" />
+            <RuleParameter Name="PassIfTextFound" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidateHtmlTagInnerText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Tag Inner Text" Description="Validates that the specified expected inner text exists within the specified HTML tag." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="TagName" Value="h2" />
+            <RuleParameter Name="AttributeName" Value="" />
+            <RuleParameter Name="AttributeValue" Value="" />
+            <RuleParameter Name="ExpectedInnerText" Value="Packages" />
+            <RuleParameter Name="RemoveInnerTags" Value="True" />
+            <RuleParameter Name="HasClosingTags" Value="True" />
+            <RuleParameter Name="CollapseWhiteSpace" Value="True" />
+            <RuleParameter Name="Index" Value="-1" />
+            <RuleParameter Name="IgnoreCase" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredTag, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Tag" Description="Verifies the existence of specified HTML tag in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="RequiredTagName" Value="form" />
+            <RuleParameter Name="MinOccurrences" Value="0" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredAttributeValue, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Attribute Value" Description="Verifies the existence of a specified HTML tag that contains an attribute with a specified value." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="TagName" Value="input" />
+            <RuleParameter Name="AttributeName" Value="name" />
+            <RuleParameter Name="MatchAttributeName" Value="" />
+            <RuleParameter Name="MatchAttributeValue" Value="" />
+            <RuleParameter Name="ExpectedValue" Value="Location" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="Index" Value="-1" />
+          </RuleParameters>
+        </ValidationRule>
+      </ValidationRules>
+    </Request>
+    <Request Method="GET" Guid="a49e5d14-ac5a-49cb-993f-bd20201d3263" Version="1.1" Url="http://localhost:4502/Home/Contact" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://localhost:4502/Home/About" />
+      </Headers>
+      <ValidationRules>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredTag, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Tag" Description="Verifies the existence of specified HTML tag in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="RequiredTagName" Value="h2" />
+            <RuleParameter Name="MinOccurrences" Value="0" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Find Text" Description="Verifies the existence of the specified text in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="FindText" Value="Contact Grande Travel" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="False" />
+            <RuleParameter Name="PassIfTextFound" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidateHtmlTagInnerText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Tag Inner Text" Description="Validates that the specified expected inner text exists within the specified HTML tag." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="TagName" Value="h2" />
+            <RuleParameter Name="AttributeName" Value="" />
+            <RuleParameter Name="AttributeValue" Value="" />
+            <RuleParameter Name="ExpectedInnerText" Value="Contact Grande Travel" />
+            <RuleParameter Name="RemoveInnerTags" Value="True" />
+            <RuleParameter Name="HasClosingTags" Value="True" />
+            <RuleParameter Name="CollapseWhiteSpace" Value="True" />
+            <RuleParameter Name="Index" Value="-1" />
+            <RuleParameter Name="IgnoreCase" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredTag, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Tag" Description="Verifies the existence of specified HTML tag in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="RequiredTagName" Value="form" />
+            <RuleParameter Name="MinOccurrences" Value="0" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredAttributeValue, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Attribute Value" Description="Verifies the existence of a specified HTML tag that contains an attribute with a specified value." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="TagName" Value="input" />
+            <RuleParameter Name="AttributeName" Value="name" />
+            <RuleParameter Name="MatchAttributeName" Value="" />
+            <RuleParameter Name="MatchAttributeValue" Value="" />
+            <RuleParameter Name="ExpectedValue" Value="Name" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="Index" Value="-1" />
+          </RuleParameters>
+        </ValidationRule>
+      </ValidationRules>
+    </Request>
+    <Request Method="GET" Guid="cb138aaa-decd-44d6-9e82-80c97105719e" Version="1.1" Url="http://localhost:4502/Home/About" ThinkTime="0" Timeout="300" ParseDependentRequests="True" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="0" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False">
+      <Headers>
+        <Header Name="Referer" Value="http://localhost:4502/Account/Login" />
+      </Headers>
+      <ValidationRules>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleRequiredTag, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Required Tag" Description="Verifies the existence of specified HTML tag in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="RequiredTagName" Value="h2" />
+            <RuleParameter Name="MinOccurrences" Value="0" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Find Text" Description="Verifies the existence of the specified text in the response." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="FindText" Value="About Us" />
+            <RuleParameter Name="IgnoreCase" Value="False" />
+            <RuleParameter Name="UseRegularExpression" Value="False" />
+            <RuleParameter Name="PassIfTextFound" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+        <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidateHtmlTagInnerText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Tag Inner Text" Description="Validates that the specified expected inner text exists within the specified HTML tag." Level="High" ExectuionOrder="BeforeDependents">
+          <RuleParameters>
+            <RuleParameter Name="TagName" Value="h2" />
+            <RuleParameter Name="AttributeName" Value="" />
+            <RuleParameter Name="AttributeValue" Value="" />
+            <RuleParameter Name="ExpectedInnerText" Value="About Us" />
+            <RuleParameter Name="RemoveInnerTags" Value="True" />
+            <RuleParameter Name="HasClosingTags" Value="True" />
+            <RuleParameter Name="CollapseWhiteSpace" Value="True" />
+            <RuleParameter Name="Index" Value="-1" />
+            <RuleParameter Name="IgnoreCase" Value="True" />
+          </RuleParameters>
+        </ValidationRule>
+      </ValidationRules>
+    </Request>
+  </Items>
+  <ValidationRules>
+    <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidateResponseUrl, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Response URL" Description="Validates that the response URL after redirects are followed is the same as the recorded response URL.  QueryString parameters are ignored." Level="Low" ExectuionOrder="BeforeDependents" />
+    <ValidationRule Classname="Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleResponseTimeGoal, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" DisplayName="Response Time Goal" Description="Validates that the response time for the request is less than or equal to the response time goal as specified on the request.  Response time goals of zero will be ignored." Level="Low" ExectuionOrder="AfterDependents">
+      <RuleParameters>
+        <RuleParameter Name="Tolerance" Value="0" />
+      </RuleParameters>
+    </ValidationRule>
+  </ValidationRules>
+</WebTest>
