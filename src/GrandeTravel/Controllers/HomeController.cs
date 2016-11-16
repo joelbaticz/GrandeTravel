@@ -57,7 +57,8 @@ namespace GrandeTravel.Controllers
                     PackageWithRating packageWithRating = new PackageWithRating
                     {
                         Package = item,
-                        Rating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average()
+                        Rating = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Select(f => f.Rating).DefaultIfEmpty(0).Average(),
+                        NumberOfFeedbacks = _feedbackRepo.Query(f => f.PackageId == item.PackageId).Count()
                     };
                     packagesWithRating.Add(packageWithRating);
                 }
@@ -148,9 +149,8 @@ namespace GrandeTravel.Controllers
                 await _emailService.SendEmailAsync(vm.Email, "Grande Travel - Do not reply", emailContent);
 
 
-                SmsService smsSer = new SmsService();
-
-                await smsSer.SendSmsAsync("+61451054465", "Hi Joel!");
+                //SmsService smsSer = new SmsService();
+                //await smsSer.SendSmsAsync("+61451054465", "Hi Joel!");
                                                  
 
                 //return Content(result);

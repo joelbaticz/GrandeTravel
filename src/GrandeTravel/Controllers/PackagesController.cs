@@ -12,10 +12,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+
+
 namespace GrandeTravel.Controllers
 {
     public class PackagesController : Controller
     {
+        private IHostingEnvironment _hostingEnv;
 
         private IPackageRepository _packageRepo;
         private ICustomerRepository _customerRepo;
@@ -23,6 +30,7 @@ namespace GrandeTravel.Controllers
         private IFeedbackRepository _feedbackRepo;
         private IBookingRepository _bookingRepo;
         private IEmailService _emailService;
+        private ISmsService _smsService;
 
         private UserManager<ApplicationUser> _userManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
@@ -36,14 +44,17 @@ namespace GrandeTravel.Controllers
         */
 
         // SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IProviderRepository providerRepo, ICustomerRepository customerRepo
-        public PackagesController(UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo, IBookingRepository bookingRepo)
+        public PackagesController(IHostingEnvironment hostingEnv, UserManager<ApplicationUser> userManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, ISmsService smsService, ICustomerRepository customerRepo, IProviderRepository providerRepo, IPackageRepository packageRepo, IFeedbackRepository feedbackRepo, IBookingRepository bookingRepo)
         {
+            _hostingEnv = hostingEnv;
+
             _packageRepo = packageRepo;
             _customerRepo = customerRepo;
             _providerRepo = providerRepo;
             _feedbackRepo = feedbackRepo;
             _bookingRepo = bookingRepo;
             _emailService = emailService;
+            _smsService = smsService;
             _userManagerService = userManagerService;
             _roleManagerService = roleManagerService;
 
@@ -185,13 +196,43 @@ namespace GrandeTravel.Controllers
         public async Task<IActionResult> Create()
         {
             ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
-            int providerId = _providerRepo.GetSingle(p => p.UserId == currentUser.Id).ProviderId;
+            Provider currentProvider = _providerRepo.GetSingle(p => p.UserId == currentUser.Id);
+            
 
 
+            //Look up images on the server
+            IEnumerable<string> imagePaths = new List<string>();
+            List<string> imageNames = new List<string>();
+            List<string> imageCorrectPaths = new List<string>();
+
+            string folderPath = _hostingEnv.WebRootPath + $@"\images\" + currentProvider.UserId;
+
+            if (Directory.Exists(folderPath))
+            {
+                imagePaths = Directory.GetFiles(folderPath);
+                /*
+                for(int i=0; i< imagePaths.Count(); i++)
+                {
+                    int endPos = imagePaths.ElementAt(i).LastIndexOf("\\")+1;
+                    string newString = imagePaths.ElementAt(i).Substring(endPos);
+                    imageNames.Add(newString);
+                }
+                */
+                foreach (var item in imagePaths)
+                {
+                    int endPos = item.LastIndexOf("\\");
+                    string newString = item.Substring(endPos);
+                    imageCorrectPaths.Add($@"\images\" + currentProvider.UserId + newString);
+                }
+
+            }
+                
             CreatePackageViewModel vm = new CreatePackageViewModel
             {
-                ProviderId = providerId,
-                IsActive = true
+                ProviderId = currentProvider.ProviderId,
+                IsActive = true,
+                ImageNames = imageCorrectPaths //imageNames
+
             };
 
             return View(vm);
@@ -199,15 +240,25 @@ namespace GrandeTravel.Controllers
 
         [Authorize(Roles = "Provider")]
         [HttpPost]
-        public IActionResult Create(CreatePackageViewModel vm)
+        public async Task<IActionResult> Create(CreatePackageViewModel vm)
         {
             if (ModelState.IsValid)
             {
+                ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+                Provider currentProvider = _providerRepo.GetSingle(p => p.UserId == currentUser.Id);
+
+                string thumbnailUrl = "";
+
+                if (vm.ThumbnailUrl != null && vm.ThumbnailUrl!="")
+                {
+                    thumbnailUrl = $@"\images\" + currentProvider.UserId + "\\" + vm.ThumbnailUrl;
+                }
+
                 Package newPackage = new Package
                 {
                     ProviderId = vm.ProviderId,
                     Name = vm.Name,
-                    ThumbnailUrl = vm.ThumbnailUrl,
+                    ThumbnailUrl = thumbnailUrl,
                     Location = vm.Location,
                     Description = vm.Description,
                     Price = vm.Price,
@@ -489,13 +540,15 @@ namespace GrandeTravel.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpGet]
-        public IActionResult PayPackage(int id)
+        public IActionResult PayPackage(int id, int numberOfPeople)
         {
             Booking currentBooking = _bookingRepo.GetSingle(b => b.BookingId == id);
             Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == currentBooking.PackageId);
             Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
             //ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
             //Customer currentCustomer = _customerRepo.GetSingle(c => c.UserId == currentUser.Id);
+
+            currentBooking.NumberOfPeople = numberOfPeople;
 
             PayPackageViewModel vm = new PayPackageViewModel
             {
@@ -508,25 +561,130 @@ namespace GrandeTravel.Controllers
                 PaymentType = 1
             };
 
+            _bookingRepo.Update(currentBooking);            
+
             return View(vm);
         }
-
+        
         [Authorize(Roles = "Customer")]
         [HttpPost]
-        public IActionResult PayPackage(PayPackageViewModel vm)
+        public async Task<IActionResult> PayPackage(PayPackageViewModel vm)
         {
             if (ModelState.IsValid)
             {
+                ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+                Customer currentCustomer = _customerRepo.GetSingle(c => c.UserId == currentUser.Id);
+
                 Booking currentBooking = _bookingRepo.GetSingle(b => b.BookingId == vm.BookingId);
+                Package currentPackage = _packageRepo.GetSingle(p => p.PackageId == currentBooking.PackageId);
+                Provider currentProvider = _providerRepo.GetSingle(p => p.ProviderId == currentPackage.ProviderId);
 
                 currentBooking.IsPaid = true;
 
                 _bookingRepo.Update(currentBooking);
+
+                //--------======= Email Notification ========-----------
+
+                //Create Unique Voucher Code
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                int voucherCodeLength = 8;
+
+                Random random = new Random();
+                string uniqueVoucherCode = new string(Enumerable.Repeat(chars, voucherCodeLength).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                DateTime voucherExpDate = DateTime.Today.AddMonths(3);
+
+             
+
+                string emailContent = "Dear " + currentCustomer.FirstName + ",\n\n"+
+                                      "Thank you for your order.  \n\n" +
+                                      "Please find the tour details below:\n\n" +
+
+                                      "Company Name: " + currentProvider.DisplayName + "\n" +
+                                      "Package Name: " + currentPackage.Name + "\n" +
+                                      "Tour Date: " + currentBooking.DateFor.ToString("yyyy-MM-dd") + "\n" +
+                                      "Booked On: " + currentBooking.DateMade.ToString("yyyy-MM-dd hh:mm:ss") + "\n" +
+                                      "Number of People: " + currentBooking.NumberOfPeople + "\n" +
+                                      "Total Cost: $" + (currentBooking.Price * currentBooking.NumberOfPeople) + "\n\n" +
+
+                                      "Please also find the voucher included:\n\n" +
+                                      "Voucher Code: " + uniqueVoucherCode + "\n" +
+                                      "Voucher Validity: 3 months from purchase\n" +
+                                      "Voucher Expiry: " + voucherExpDate.ToString("yyyy-MM-dd") + "\n\n" +
+
+                                      "Kind Regards,\nGrande Travel";
+
+                await _emailService.SendEmailAsync(currentUser.Email, "Grande Travel - Order Confirmation - Do not reply", emailContent);
+
+                //--------======= SMS Notification ========-----------
+
+                string smsContent = "Dear " + currentCustomer.FirstName + ", thank you for your order! Grande Travel";
+
+                await _smsService.SendSmsAsync(currentUser.PhoneNumber, smsContent);
 
                 return RedirectToAction("BookedPackages", "Packages");
 
             }
             return View(vm);
         }
+
+        /*
+        [HttpPost]
+        public IActionResult UploadFiles(IList<IFormFile> files)
+        {
+
+            long size = 0;
+            foreach (var file in files)
+            {
+                var filename = ContentDispositionHeaderValue
+                                .Parse(file.ContentDisposition)
+                                .FileName
+                                .Trim('"');
+                filename = _hostingEnv.WebRootPath + $@"\"+filename;
+                size += file.Length;
+                using (FileStream fs = System.IO.File.Create(filename))
+                {
+                    file.CopyTo(fs);
+                    fs.Flush();
+                }
+            }
+            ViewBag.Message = files.Count + " file(s) / " + size + " bytes uploaded successfully!";
+            return View();
+        }
+        */
+
+
+        [HttpPost]
+        public async Task<IActionResult> UploadFilesAjax()
+        {
+            ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+            Provider currentProvider = _providerRepo.GetSingle(p => p.UserId == currentUser.Id);
+
+            string folderPath = _hostingEnv.WebRootPath + $@"\images\" + currentProvider.UserId;
+
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            long size = 0;
+            var files = Request.Form.Files;
+            foreach (var file in files)
+            {
+                var filename = ContentDispositionHeaderValue
+                                .Parse(file.ContentDisposition)
+                                .FileName
+                                .Trim('"');
+                filename = folderPath + $@"\{filename}";
+                size += file.Length;
+                using (FileStream fs = System.IO.File.Create(filename))
+                {
+                    file.CopyTo(fs);
+                    fs.Flush();
+                }
+            }
+            string message = $"{files.Count} file(s) / { size} bytes uploaded successfully!";
+    return Json(message);
+        }
+
+
     }
 }

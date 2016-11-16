@@ -23,16 +23,18 @@ namespace GrandeTravel.Controllers
         private SignInManager<ApplicationUser> _signInManagerService;
         private RoleManager<IdentityRole> _roleManagerService;
         private IEmailService _emailService;
+        private ISmsService _smsService;
 
         private IProviderRepository _providerRepo;
         private ICustomerRepository _customerRepo;
 
-        public AccountController(UserManager<ApplicationUser> userManagerService, SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, IProviderRepository providerRepo, ICustomerRepository customerRepo)
+        public AccountController(UserManager<ApplicationUser> userManagerService, SignInManager<ApplicationUser> signInManagerService, RoleManager<IdentityRole> roleManagerService, IEmailService emailService, ISmsService smsService, IProviderRepository providerRepo, ICustomerRepository customerRepo)
         {
             _userManagerService = userManagerService;
             _signInManagerService = signInManagerService;
             _roleManagerService = roleManagerService;
             _emailService = emailService;
+            _smsService = smsService;
             _providerRepo = providerRepo;
             _customerRepo = customerRepo;
 
@@ -88,8 +90,16 @@ namespace GrandeTravel.Controllers
 
                     _providerRepo.Create(newProvider);
 
-                    //return RedirectToAction("Index", "Packages");
-                    return RedirectToAction("Login", "Account");
+
+                    //--------======= SMS Notification ========-----------
+
+                    string smsContent = "Welcome to Grande Travel, " + newProvider.DisplayName + "!";
+
+                    await _smsService.SendSmsAsync(user.PhoneNumber, smsContent);
+
+
+                    return RedirectToAction("Index", "Packages");
+                    //return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -148,8 +158,14 @@ namespace GrandeTravel.Controllers
 
                     _customerRepo.Create(newCustomer);
 
-                    //return RedirectToAction("Index", "Packages");
-                    return RedirectToAction("Login", "Account");
+                    //--------======= SMS Notification ========-----------
+
+                    string smsContent = "Welcome to Grande Travel, " + newCustomer.FirstName + "!";
+
+                    await _smsService.SendSmsAsync(user.PhoneNumber, smsContent);
+
+                    return RedirectToAction("Index", "Packages");
+                    //return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -167,7 +183,7 @@ namespace GrandeTravel.Controllers
 
         //ReturnUrl is returning the user to page which required authentication
         [HttpGet]
-        public IActionResult Login(string returnUrl) // returnUrl = ""
+        public IActionResult Login(string returnUrl = "") // returnUrl = ""
         {
             if (User.Identity.IsAuthenticated)
             {

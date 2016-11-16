@@ -251,33 +251,45 @@
                             }
 
                             <div class="item @extraclass">
-                                @if (item.Package.IsActive == false)
-                                {
+                                <a href="/Packages/Details/@item.Package.PackageId" >
+                                    @if (item.Package.IsActive == false)
+                                    {
                                     <img runat="server" width="210" height="150" src="@Url.Content("~/images/discontinued.jpg")" />
-                                }
-                                else if (item.Package.ThumbnailUrl == null || item.Package.ThumbnailUrl == "")
-                                {
+                                    }
+                                    else if (item.Package.ThumbnailUrl == null || item.Package.ThumbnailUrl == "")
+                                    {
                                     <img runat="server" width="210" height="150" src="@Url.Content("~/images/nothumbnail.jpg")" />
-                                }
-                                else
-                                {
+                                    }
+                                    else
+                                    {
                                     <img runat="server" width="210" height="150" src="@Url.Content(item.Package.ThumbnailUrl)" />
-                                }
-                                
+                                    }
+                                </a>
                               
                                 <div class="carousel-caption">
-                                    <h3>@item.Package.Name</h3>
-
-                                    <p>
+                                    <h3>
                                         @{
-                                            string shortName = item.Package.Description;
+                                            string shortName = item.Package.Name;
 
-                                            if (shortName.Length > 60)
+                                            if (shortName.Length > 40)
                                             {
-                                                shortName = shortName.Remove(60) + "...";
+                                                shortName = shortName.Remove(40) + "...";
                                             }
                                         }
                                         @shortName
+                                        @*item.Package.Name*@
+                                    </h3>
+
+                                    <p>
+                                        @{
+                                            string shortDescription = item.Package.Description;
+
+                                            if (shortDescription.Length > 60)
+                                            {
+                                                shortDescription = shortDescription.Remove(60) + "...";
+                                            }
+                                        }
+                                        @shortDescription
                                         @*item.Package.Description*@
                                     </p>
 
@@ -292,8 +304,15 @@
                                                 <span class="glyphicon glyphicon-star star-empty"></span>
                                             }
                                         </span>
-                                        @item.Rating
-                                        
+                                            @if (item.NumberOfFeedbacks == 0)
+                                            {
+                                                <span>No reviews</span>
+                                            }
+                                            else
+                                            {
+                                                @String.Format("{0:0.0}", item.Rating)<span> - </span>@item.NumberOfFeedbacks<span> review(s)</span>
+                                            }
+
                                     </p>
 
                                 </div>

@@ -16,7 +16,7 @@ namespace GrandeTravel.Services
 {
     public class SmsService: ISmsService
     {
-
+        /*
         private SmsSettings _smsSettings;
 
         public SmsService()
@@ -29,8 +29,8 @@ namespace GrandeTravel.Services
                 RequestUri = "/2010-04-01/Accounts/",
                 From = "+61437845577"
             };
-
         }
+        */
 
         private string smsBaseUri = "https://api.twilio.com";
         private string smsRequestUriPart1 = "/2010-04-01/Accounts/";
@@ -40,7 +40,7 @@ namespace GrandeTravel.Services
         private string smsToken = "1dbcc94d00901efa07f646a5896ec0c9";
         private string smsFromNumber = "+61437845577";
 
-        /*
+        
         public async Task SendSmsAsync(string smsToNumber, string smsMessage)
         {
 
@@ -58,16 +58,13 @@ namespace GrandeTravel.Services
                             new KeyValuePair<string, string>("Body", smsMessage)
                         });
 
-
-                
-
                 await client.PostAsync(postUrl, content).ConfigureAwait(false);
 
             }
         }
-        */
+        
 
-
+        /*
 
           
                 private const string TwilioSmsEndpointFormat = "https://api.twilio.com/2010-04-01/Accounts/{0}/Messages.json";
@@ -113,6 +110,8 @@ namespace GrandeTravel.Services
 
                     }
                 }
-          
+     
+        */
+         
     }
 }
