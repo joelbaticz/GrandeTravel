@@ -45,7 +45,8 @@ namespace GrandeTravel.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            IEnumerable<Package> allPackages = _packageRepo.Query(p => p.IsActive == true).Take(5);
+            //IEnumerable<Package> allPackages = _packageRepo.Query(p => p.IsActive == true).Take(5);
+            IEnumerable<Package> allPackages = _packageRepo.Query(p => p.IsActive == true);
 
             List<PackageWithRating> packagesWithRating = new List<PackageWithRating>();
 
@@ -65,10 +66,14 @@ namespace GrandeTravel.Controllers
 
             }
 
+                       
+
 
             HomeIndexViewModel vm = new HomeIndexViewModel
             {
                 Destination = "",
+                //5 best performing packages
+
                 BestPackagesWithRatings = packagesWithRating.OrderByDescending(p => p.Rating).Take(5)
             };
 

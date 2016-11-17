@@ -3,101 +3,332 @@
 
 <h2>Edit Package</h2>
 
-<form class="form-horizontal" asp-controller="Packages" asp-action="Edit" method="post" role="form">
-    @*
-        <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="PackageId">PackageId Id: @Model.PackageId</label>
-        <div class="col-sm-10">
-                <input class="form-control" type="hidden" asp-for="PackageId" value="@Model.PackageId" />
+<div ng-app="thumbnailApp" ng-controller="thumbnailCtrl">
+
+    <form class="form-horizontal" asp-controller="Packages" asp-action="Edit" method="post" role="form">
+        @*
+            <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="PackageId">PackageId Id: @Model.PackageId</label>
+            <div class="col-sm-10">
+                    <input class="form-control" type="hidden" asp-for="PackageId" value="@Model.PackageId" />
+                </div>
             </div>
-        </div>
-    *@
-
-    <input type="hidden" asp-for="PackageId" value="@Model.PackageId" />
-
-    <input type="hidden" asp-for="ProviderId" value="@Model.ProviderId" />
-
-    @*
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="ProviderId">Provider Id:</label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="ProviderId" />
-            <span asp-validation-for="ProviderId"></span>
-        </div>
-    </div>
         *@
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="Name">Name:</label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="Name" autofocus/>
-            <span asp-validation-for="Name"></span>
-        </div>
-    </div>
+        <input type="hidden" asp-for="PackageId" value="@Model.PackageId" />
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="ThumbnailUrl">Thumbnail URL:</label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="ThumbnailUrl" />
-            <span asp-validation-for="ThumbnailUrl"></span>
-        </div>
-    </div>
+        <input type="hidden" asp-for="ProviderId" value="@Model.ProviderId" />
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="Location">Location:</label>
-        <div class="col-sm-10">
-            <input class="form-control" asp-for="Location" />
-            <span asp-validation-for="Location"></span>
-        </div>
-    </div>
+        @*
+            <div class="form-group">
+                <label class="control-label col-sm-2" asp-for="ProviderId">Provider Id:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="ProviderId" />
+                    <span asp-validation-for="ProviderId"></span>
+                </div>
+            </div>
+        *@
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="Description">Description:</label>
-        <div class="col-sm-10">
-            @*<input class="form-control" asp-for="Description" />*@
-            <textarea style="height: 150px; min-height: 100px; min-width: 100%; max-width: 100%;" class="form-control" asp-for="Description" placeholder=""></textarea>
-            <span asp-validation-for="Description"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Price" class="control-label col-sm-2">Price:</label>
-        <div style="width: 200px;" class="col-sm-2">
-            <div class="input-group">
-                <div class="input-group-addon">$</div>
-                <input asp-for="Price" class="form-control" />
-                <div class="input-group-addon">.00</div>
-                <span asp-validation-for="Price"></span>
+        <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="Name">Name:</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Name" autofocus />
+                <span asp-validation-for="Name"></span>
             </div>
         </div>
-    </div>
+        @*
+            <div class="form-group">
+                <label class="control-label col-sm-2" asp-for="ThumbnailUrl">Thumbnail URL:</label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="ThumbnailUrl" />
+                    <span asp-validation-for="ThumbnailUrl"></span>
+                </div>
+            </div>
+        *@
 
-    
-    <div class="form-group">
-        <label class="control-label col-sm-2" asp-for="IsActive">Status:</label>
-        <div class="col-sm-10 custom-checkbox">
-            <!-- don't need to specify input="checkbox" because the datatype is bool -->
-            @*<input type="checkbox" asp-for="IsActive" />
-            <span asp-validation-for="IsActive"></span>*@
-            <div class="link-shadow" style="width: 31px;">
-                <div class="checkbox">
-                    <input id="checkbox1" type="checkbox" asp-for="IsActive">
-                    <label for="checkbox1">&nbsp;Active</label>
+        <!-- THUMBNAIL SECTON -->
+        <!-- FILE UPLOAD -->
+
+        <div style="margin-top: 20px; margin-bottom: 20px;" class="col-sm-offset-2 page-separator-grey"></div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Thumbnail Upload:</label>
+            <div class="col-sm-10">
+
+                <label class="btn btn-secondary" style="float: left;  margin-right: 10px;">
+                    Browse...
+                    <input style="display: none;" type="file" accept="image/gif, image/jpg, image/jpeg, image/png" id="files" name="files" multiple />
+                </label>
+                <input class="btn btn-secondary disabled" type="button" id="upload" value="Upload" />
+
+                <div class="file-upload-container">
+                    <p id="fileinfo">No files selected.</p>
+
+                </div>
+                @*ViewBag.Message*@
+            </div>
+        </div>
+
+        <!-- THUMBNAILS -->
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Thumbnails Available:</label>
+            <div class="col-sm-10">
+                @*
+                    @foreach (var imageName in Model.ImageNames)
+                    {
+                        <img style="float: left; margin-left: 5px; margin-bottom: 10px; border: 1px solid white" runat="server" width="140" height="100" src="@Url.Content(@imageName)" />
+                        <p>@imageName</p>
+                    }
+                *@
+                <div ng-repeat="image in imageData">
+                    <img ng-click="imageClick($index, image)" ng-class="imageClass[$index]" style="float: left; margin-left: 5px; margin-bottom: 10px;" runat="server" width="140" height="100" src="{{image}}" />
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Thumbnail Url:</label>
+            <div class="col-sm-10">
+                @*
+                    <input ng-model="imageSelectedName" asp-for="ThumbnailUrl" type="hidden" />
+                *@
+                <input ng-model="imageSelectedNameNoPath" asp-for="ThumbnailUrl" class="form-control" />
+                <span asp-validation-for="ThumbnailUrl"></span>
+
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; margin-bottom: 20px;" class="col-sm-offset-2 page-separator-grey"></div>
+
+        <!-- END OF THUMBNAIL SECTION -->
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="Location">Location:</label>
+            <div class="col-sm-10">
+                <input class="form-control" asp-for="Location" />
+                <span asp-validation-for="Location"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="Description">Description:</label>
+            <div class="col-sm-10">
+                @*<input class="form-control" asp-for="Description" />*@
+                <textarea style="height: 150px; min-height: 100px; min-width: 100%; max-width: 100%;" class="form-control" asp-for="Description" placeholder=""></textarea>
+                <span asp-validation-for="Description"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price" class="control-label col-sm-2">Price:</label>
+            <div style="width: 200px;" class="col-sm-2">
+                <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input asp-for="Price" class="form-control" />
+                    <div class="input-group-addon">.00</div>
+                    <span asp-validation-for="Price"></span>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" asp-for="IsActive">Status:</label>
+            <div class="col-sm-10 custom-checkbox">
+                <!-- don't need to specify input="checkbox" because the datatype is bool -->
+                @*<input type="checkbox" asp-for="IsActive" />
+                    <span asp-validation-for="IsActive"></span>*@
+                <div class="link-shadow" style="width: 31px;">
+                    <div class="checkbox">
+                        <input id="checkbox1" type="checkbox" asp-for="IsActive">
+                        <label for="checkbox1">&nbsp;Active</label>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-</form>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+
+    </form>
+
+    @*<p>{{stuff}}</p>*@
+
+</div>
+
 <br />
 
 <div class="link-shadow col-sm-offset-2 col-sm-10" style="width: 150px">
     <a class="" asp-controller="Packages" asp-action="Delete" asp-route-id="@Model.PackageId">Delete Package</a>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $("#upload").click(function (evt) {
+            var fileUpload = $("#files").get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length ; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Packages/UploadFilesAjax",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (message) {
+                    alert(message);
+
+                    $("fileinfo").text(message);
+
+                    location.reload();
+                },
+                error: function () {
+                    alert("There was error uploading files!");
+                }
+            });
+        });
+
+        var newFunction = function (number)
+        {
+            var numberString = "";
+
+            numberString = "0000000000000" + number;
+
+            numberString = numberString.slice(0, numberString.length - 3 ) + "," + numberString.slice(numberString.length - 3 , numberString.length);
+            numberString = numberString.slice(0, numberString.length - 7 ) + "," + numberString.slice(numberString.length - 7 , numberString.length);
+            numberString = numberString.slice(0, numberString.length - 11 ) + "," + numberString.slice(numberString.length - 11 , numberString.length);
+            numberString = numberString.slice(0, numberString.length - 15 ) + "," + numberString.slice(numberString.length - 15 , numberString.length);
+
+            var condition = true;
+            while (condition)
+            {
+                char = numberString.charAt(0);
+                if ((char=='0') || (char==','))
+                {
+                    numberString = numberString.slice(1,numberString.length);
+                }
+                else
+                {
+                    condition=false;
+                }
+
+            }
+
+            return numberString;
+        };
+
+        $('input#files').change(function(){
+            var files = $(this)[0].files;
+
+            var filesize = 0; //this.files[1].size;
+            var totalfilesize = 0;
+
+            var fileinfostring = "<p>" + files.length + " file(s) selected:</p><div style='height: 1px; margin-bottom: 7px;' class='page-separator-yellow'></div>";
+
+            //fileinfostring = "";
+
+            if (this.files.length == 0)
+            {
+                fileinfotstring = "<p>No file selected.</p>";
+            }
+            if (this.files.length == 1)
+            {
+                fileinfotstring = "<p>" + this.files.length + " file selected:</p>";
+            }
+            if (this.files.length > 1)
+            {
+                fileinfotstring = "<p>" + this.files.length + " files selected:</p>";
+            }
+
+            //Gather file names and sizes
+
+            for (var i = 0; i<this.files.length; i++)
+            {
+                filesize = this.files[i].size;
+                totalfilesize += filesize;
+                var filesizestring = newFunction(filesize);
+                fileinfostring = fileinfostring + "<p style='float: left;'>" + this.files[i].name + "</p><p style='float: right; color: aquamarine;'>" + filesizestring + " bytes </p><div class='clearfix'></div>";
+            }
+
+            //fileinfostring = fileinfostring + "</div>";
+
+
+
+            /*
+            if (sizeString == "") sizeString = "0";
+
+
+            if (files.length == 0 )
+            {
+                $('p#fileinfo').text(fileinfostring);
+            }
+            if (files.length == 1 )
+            {
+                $('p#fileinfo').append(fileinfostring);
+                $("#upload").val("Upload " + sizeString + " bytes");
+            }
+            if (files.length >1 )
+            {
+                $('p#fileinfo').append(fileinfostring);
+                $("#upload").val("Upload " + sizeString + " bytes");
+            }
+            */
+
+            var totalfilesizestring = newFunction(totalfilesize);
+
+            $('p#fileinfo').empty();
+            $('p#fileinfo').append(fileinfostring);
+            $("#upload").val("Upload " + totalfilesizestring + " bytes");
+            $("#upload").removeClass("disabled");
+
+
+
+        });
+    });
+</script>
+
+<script>
+    'use strict';
+
+    angular
+        .module('thumbnailApp', [])
+        .controller('thumbnailCtrl', function ($scope) {
+
+
+            $scope.imageData = @Html.Raw(Json.Serialize(Model.ImageNames));
+            $scope.stuff= "Angular worxxxx";
+            $scope.imageClass = [];
+            $scope.imageSelectedName = [];
+
+            $scope.imageSelectedNameNoPath = @Html.Raw(Json.Serialize(Model.ThumbnailUrl));
+            $scope.imageSelectedNameNoPath = $scope.imageSelectedNameNoPath.substring($scope.imageSelectedNameNoPath.lastIndexOf("\\")+1, $scope.imageSelectedNameNoPath.length)
+
+
+            $scope.imageClick = function (index, name) {
+
+
+                for (var i = 0; i < $scope.imageClass.length; i++) {
+                    $scope.imageClass[i] = "";
+                }
+
+                $scope.imageClass[index] = "selected-thumbnail";
+                $scope.imageSelectedName = name;
+                /*
+                alert(name.lastIndexOf("\\"));
+                alert(name.length);
+                alert(name.length-name.lastIndexOf("\\")-1);
+                */
+                $scope.imageSelectedNameNoPath = name.substring(name.lastIndexOf("\\")+1, name.length);
+
+            }
+
+        });
+
+</script>

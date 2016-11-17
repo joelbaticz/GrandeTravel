@@ -41,9 +41,10 @@
         }
         else
         {
-        <img width="280" height="200" src="../@Model.ThumbnailUrl" />
+            @*img width="280" height="200" src="../@Model.ThumbnailUrl" />*@
+            <img runat="server" width="280" height="200" src="@Url.Content(Model.ThumbnailUrl)"/>
         }
-        
+
     </div>
 
     <div class="package-details-description">

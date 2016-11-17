@@ -210,14 +210,7 @@ namespace GrandeTravel.Controllers
             if (Directory.Exists(folderPath))
             {
                 imagePaths = Directory.GetFiles(folderPath);
-                /*
-                for(int i=0; i< imagePaths.Count(); i++)
-                {
-                    int endPos = imagePaths.ElementAt(i).LastIndexOf("\\")+1;
-                    string newString = imagePaths.ElementAt(i).Substring(endPos);
-                    imageNames.Add(newString);
-                }
-                */
+
                 foreach (var item in imagePaths)
                 {
                     int endPos = item.LastIndexOf("\\");
@@ -275,9 +268,32 @@ namespace GrandeTravel.Controllers
 
         [Authorize(Roles = "Provider")]
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
+            ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+            Provider currentProvider = _providerRepo.GetSingle(p => p.UserId == currentUser.Id);
+
             Package editablePackage = _packageRepo.GetSingle(p => p.PackageId == id);
+
+            //Look up images on the server
+            IEnumerable<string> imagePaths = new List<string>();
+            List<string> imageNames = new List<string>();
+            List<string> imageCorrectPaths = new List<string>();
+
+            string folderPath = _hostingEnv.WebRootPath + $@"\images\" + currentProvider.UserId;
+
+            if (Directory.Exists(folderPath))
+            {
+                imagePaths = Directory.GetFiles(folderPath);
+
+                foreach (var item in imagePaths)
+                {
+                    int endPos = item.LastIndexOf("\\");
+                    string newString = item.Substring(endPos);
+                    imageCorrectPaths.Add($@"\images\" + currentProvider.UserId + newString);
+                }
+
+            }
 
             EditPackageViewModel vm = new EditPackageViewModel
             {
@@ -288,7 +304,8 @@ namespace GrandeTravel.Controllers
                 Location = editablePackage.Location,
                 Description = editablePackage.Description,
                 Price = editablePackage.Price,
-                IsActive = editablePackage.IsActive
+                IsActive = editablePackage.IsActive,
+                ImageNames = imageCorrectPaths //imageNames
             };
 
             return View(vm);
@@ -296,10 +313,16 @@ namespace GrandeTravel.Controllers
 
         [Authorize(Roles = "Provider")]
         [HttpPost]
-        public IActionResult Edit(EditPackageViewModel vm)
+        public async Task<IActionResult> Edit(EditPackageViewModel vm)
         {
             if (ModelState.IsValid)
             {
+                ApplicationUser currentUser = await _userManagerService.FindByNameAsync(User.Identity.Name);
+                Provider currentProvider = _providerRepo.GetSingle(p => p.UserId == currentUser.Id);
+
+                Package editablePackage = _packageRepo.GetSingle(p => p.PackageId == vm.PackageId);
+
+                /*
                 Package editedPackage = new Package
                 {
                     PackageId = vm.PackageId,
@@ -311,8 +334,25 @@ namespace GrandeTravel.Controllers
                     Price = vm.Price,
                     IsActive = vm.IsActive
                 };
+                */
+                string thumbnailUrl = "";
 
-                _packageRepo.Update(editedPackage);
+                if (vm.ThumbnailUrl != null && vm.ThumbnailUrl != "")
+                {
+                    thumbnailUrl = $@"\images\" + currentProvider.UserId + "\\" + vm.ThumbnailUrl;
+                }
+
+                editablePackage.PackageId = vm.PackageId;
+                editablePackage.ProviderId = vm.ProviderId;
+                editablePackage.Name = vm.Name;
+                editablePackage.ThumbnailUrl = thumbnailUrl;
+                editablePackage.Location = vm.Location;
+                editablePackage.Description = vm.Description;
+                editablePackage.Price = vm.Price;
+                editablePackage.IsActive = vm.IsActive;
+
+
+                _packageRepo.Update(editablePackage);
 
                 return RedirectToAction("Index");
             }

@@ -24,6 +24,7 @@ namespace GrandeTravel.ViewModels
         public double Price { get; set; }
         [Required]
         public bool IsActive { get; set; }
+        public IEnumerable<string> ImageNames { get; set; }
 
     }
 }
